@@ -1095,3 +1095,11 @@ esp/hello_world/build/libsodium/libsodium/src/libsodium/crypto_pwhash/argon2/arg
 esp/hello_world/build/libsodium/libsodium/src/libsodium/crypto_pwhash/argon2/argon2-fill-block-ref.d
 esp/hello_world/build/libsodium/libsodium/src/libsodium/crypto_pwhash/argon2/argon2-encoding.o
 esp/hello_world/build/libsodium/libsodium/src/libsodium/crypto_onetimeauth/poly1305/onetimeauth_poly1305.d
+hello_world/build/hello-world.map
+*.o
+*.d
+*.a
+*.mk
+hello_world/build/
+hello_world/
+esp/

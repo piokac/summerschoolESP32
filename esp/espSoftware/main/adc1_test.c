@@ -56,7 +56,7 @@
 xQueueHandle timer_queue;
 #define TEST_WITH_RELOAD   1      /*!< example without auto-reload mode */
 #define DIVIDER_TO_MS 1000.0
-int TIMER_INTERVAL1_SEC=100;
+int TIMER_INTERVAL1_SEC=2;
 //--------------------------
 
 //For setting pin level
@@ -64,11 +64,11 @@ int TIMER_INTERVAL1_SEC=100;
 #define pin2 4
 
 
-#define ADC_BUFFER_SIZE 100
+#define ADC_BUFFER_SIZE 2000
 int adc1data[ADC_BUFFER_SIZE];
 int adc2data[ADC_BUFFER_SIZE];
-int adc_head = 0;
-int adc_tail = 0;
+volatile int adc_head = 0;
+volatile int adc_tail = 0;
 
 typedef struct {
 	int type;                  /*!< event type */

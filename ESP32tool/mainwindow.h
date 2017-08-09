@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include "esp32data.h"
 #include "csvread.h"
+#include "logger.h"
+#include <QElapsedTimer>
 namespace Ui {
 class MainWindow;
 }
@@ -29,7 +31,7 @@ public:
 public slots:
     void pokazKomunikacja(bool state);
     void newAdcData(int adc1,int adc2);
-    void setSavingToFileFlag(bool state);
+    void savingClicked(bool state);
     void pokazCSVreader();
 
 private slots:
@@ -42,6 +44,8 @@ private:
     Ui::MainWindow *ui;
     void updatePortStatus(bool state);
     ESP32data esp32;
+    logger saverToFile;
+    QElapsedTimer timer;
 
 };
 

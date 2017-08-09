@@ -14,6 +14,7 @@
 #include <QTextStream>
 #include <QTime>
 #include <QFileDialog>
+#include "logger.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -25,8 +26,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->setFreq,SIGNAL(clicked()),this,SLOT(setFrequencyValue()));
     connect(ui->setPins,SIGNAL(clicked()),this,SLOT(setPinsLevels()));
     connect(&esp32,SIGNAL(newDataAdc(int,int)),this,SLOT(newAdcData(int,int)));
-    connect(ui->savingButton,SIGNAL(clicked(bool)),this,SLOT(setSavingToFileFlag(bool)));
+    connect(ui->savingButton,SIGNAL(clicked(bool)),this,SLOT(savingClicked(bool)));
     connect(ui->actionZobacz_odczyty,SIGNAL(triggered()),this,SLOT(pokazCSVreader()));
+    timer.start();
 }
 
 MainWindow::~MainWindow()
@@ -69,31 +71,40 @@ void MainWindow::pokazKomunikacja(bool state)
 
 void MainWindow::newAdcData(int adc1, int adc2)
 {
+    //wyświetla co 100 milisekund
+    if(timer.elapsed()>100)
+    {
     ui->adc1values->setValue(adc1);
     ui->adc2values->setValue(adc2);
-    if(esp32.getSavingToFileFlag()==true)
+    timer.restart();
+    }
+    if(saverToFile.getSavingToFileFlag()==true)
     {
-        esp32.savingToFile(adc1,adc2);
+        QVector<int> data;
+        data.push_back(adc1);
+        data.push_back(adc2);
+        saverToFile.log(data);
     }
 }
 
-void MainWindow::setSavingToFileFlag(bool state)
+void MainWindow::savingClicked(bool state)
 {
     if(esp32.getPort()!="")
     {
-        esp32.setSavingToFileFlag(state);
         if(state)
         {
             QString SaveFileName = QFileDialog::getSaveFileName(this, tr("Otwórz plik tekstowy"), tr(""), tr("All​ ​files​ ​(*.*)"));
-            esp32.OpenFile(SaveFileName);
+            saverToFile.OpenFile(SaveFileName);
             ui->savingButton->setText("Przerwij zapis");
         }
         else
         {
             ui->savingButton->setText("Zapisuj odczyty do pliku");
+            saverToFile.stopSaving();
         }
     }
 }
+
 
 void MainWindow::pokazCSVreader()
 {

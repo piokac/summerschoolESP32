@@ -30,7 +30,6 @@ ESP32data::ESP32data(QObject *parent) : QObject(parent),serial(new QSerialPort(t
     serial->setStopBits(QSerialPort::OneStop);
     serial->setFlowControl(QSerialPort::NoFlowControl);
     startTimer(100);
-    savingToFileFlag=false;
 }
 
 void ESP32data::closePort()
@@ -54,44 +53,11 @@ QString ESP32data::getPort()
     return serial->portName();
 }
 
-void ESP32data::OpenFile(QString SaveFileName)
-{
-    file.setFileName(SaveFileName);
-        if(file.open(QIODevice::WriteOnly | QIODevice::Append))
-        {
-            stream.setDevice(&file);
-            file.close();
-        }
-}
-
-void ESP32data::setSavingToFileFlag(bool state)
-{
-    savingToFileFlag=state;
-}
-
-void ESP32data::savingToFile(int adc1,int adc2)
-{
-    QString format = "hh:mm:ss:zzz";
-    QString str=QTime::currentTime().toString(format);
-    file.open(QIODevice::WriteOnly | QIODevice::Append);
-    stream.setDevice(&file);
-    stream<<str<<", "<<adc1<<", "<<adc2<<"\r\n";
-    stream.flush();
-    file.close();
-}
 
 ESP32data::~ESP32data()
 {
     closePort();
 }
-
-
-bool ESP32data::getSavingToFileFlag() const
-{
-    return savingToFileFlag;
-}
-
-
 
 
 void ESP32data::setGpios(int pin1, int pin2)
@@ -139,7 +105,7 @@ void ESP32data::setFrequencyAdc(double freq)
             .arg(frameLength).arg(freqString);
     QByteArray frameByte=frame.toLocal8Bit();
     writeData(frameByte);
-    qDebug()<<frameByte;
+    //qDebug()<<frameByte;
     //    //int dataLength=1+1+1+1+freqString.length()+1;//number of signs in package without LENGTH number of signs
     //    //QString dataLengthString=QString::number(dataLength);;//number of digits of dataLength
     //    //to get complete number of signs(LENGHT),add number of digits of dataLenght and number of signs in package withoug LENGHT
@@ -180,8 +146,8 @@ void ESP32data::timerEvent(QTimerEvent *ev)
     //wyslac komende
     QByteArray receivedData = readData();
     //odbierz ramke
-
-    string frame(receivedData);
+    static string frame;
+    frame+=string(receivedData);
     //qDebug()<<receivedData;
     smatch containSizeandCmd;
     smatch containAdcsData;
@@ -195,8 +161,11 @@ void ESP32data::timerEvent(QTimerEvent *ev)
         {
             size=containSizeandCmd[1];
             cmd=((string)containSizeandCmd[2])[0];
-            frame = containSizeandCmd.suffix().str();
             string data=containSizeandCmd[3];
+
+            frame = containSizeandCmd.suffix().str();
+
+
             switch(cmd)
             {
             case 'G':
@@ -209,8 +178,11 @@ void ESP32data::timerEvent(QTimerEvent *ev)
                 break;
             }
             }
-
         }
+       // if(frame.length()>0)
+       // {
+        //    qDebug()<<QString::fromStdString(frame);
+        //}
     }
     //emitować i slot wyświetlający w mainwindow wartości
 }

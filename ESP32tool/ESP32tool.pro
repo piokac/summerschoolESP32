@@ -16,12 +16,14 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     esp32data.cpp \
     serialportsettings.cpp \
-    csvread.cpp
+    csvread.cpp \
+    logger.cpp
 
 HEADERS  += mainwindow.h \
     esp32data.h \
     serialportsettings.h \
-    csvread.h
+    csvread.h \
+    logger.h
 
 FORMS    += mainwindow.ui \
     serialportsettings.ui \

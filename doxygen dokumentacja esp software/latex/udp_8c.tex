@@ -1,0 +1,124 @@
+\hypertarget{udp_8c}{}\section{C\+:/\+Users/\+Kuba/\+Documents/\+Praktyki/esp/esp\+Software/main/udp.c File Reference}
+\label{udp_8c}\index{C\+:/\+Users/\+Kuba/\+Documents/\+Praktyki/esp/esp\+Software/main/udp.\+c@{C\+:/\+Users/\+Kuba/\+Documents/\+Praktyki/esp/esp\+Software/main/udp.\+c}}
+{\ttfamily \#include \char`\"{}adc1\+\_\+test.\+c\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}udp.\+h\char`\"{}}\newline
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{udp_8c_aaf48dd31815d6c6e4a94cebfb63e56a3}{wifi\+\_\+init\+\_\+sta} ()
+\begin{DoxyCompactList}\small\item\em using esp as station \end{DoxyCompactList}\item 
+void \hyperlink{udp_8c_a62dddf76eb27aacde1609464b8d9ebad}{wifi\+\_\+init\+\_\+softap} ()
+\item 
+esp\+\_\+err\+\_\+t \hyperlink{udp_8c_a07d355941cdd5379965d23b93b3bfdfd}{create\+\_\+udp\+\_\+server} ()
+\item 
+esp\+\_\+err\+\_\+t \hyperlink{udp_8c_a7247edc2dc2dfb7181699f9109676551}{create\+\_\+udp\+\_\+client} ()
+\begin{DoxyCompactList}\small\item\em create a udp client socket. return E\+S\+P\+\_\+\+OK\+:success E\+S\+P\+\_\+\+F\+A\+IL\+:erro \end{DoxyCompactList}\item 
+void \hyperlink{udp_8c_af6fd7f48781ca5bb99bb9ec8fa94b681}{send\+\_\+recv\+\_\+data} (void $\ast$pv\+Parameters)
+\begin{DoxyCompactList}\small\item\em send or recv data task \end{DoxyCompactList}\item 
+int \hyperlink{udp_8c_abe0ae4f770e0832708b8fe2dc1535a6a}{get\+\_\+socket\+\_\+error\+\_\+code} (int socket)
+\item 
+int \hyperlink{udp_8c_a90f32c1cae8587bd09127e4f2d96a676}{show\+\_\+socket\+\_\+error\+\_\+reason} (int socket)
+\item 
+int \hyperlink{udp_8c_aca28781eb0afe5c11690ec94a522e9d3}{check\+\_\+connected\+\_\+socket} ()
+\item 
+void \hyperlink{udp_8c_a5444cae5002b72381f50851c5a971369}{close\+\_\+socket} ()
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+Event\+Group\+Handle\+\_\+t \hyperlink{udp_8c_a9a4dc52caae187441ef4df0d1c264f49}{udp\+\_\+event\+\_\+group}
+\item 
+int \hyperlink{udp_8c_af4bd2463dabf41e5cc56c5a82e4c7d18}{total\+\_\+data} = 0
+\item 
+int \hyperlink{udp_8c_a12366c313958ac8ed2ba5fa4c48e4f50}{success\+\_\+pack} = 0
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{udp_8c_aca28781eb0afe5c11690ec94a522e9d3}\label{udp_8c_aca28781eb0afe5c11690ec94a522e9d3}} 
+\index{udp.\+c@{udp.\+c}!check\+\_\+connected\+\_\+socket@{check\+\_\+connected\+\_\+socket}}
+\index{check\+\_\+connected\+\_\+socket@{check\+\_\+connected\+\_\+socket}!udp.\+c@{udp.\+c}}
+\subsubsection{\texorpdfstring{check\+\_\+connected\+\_\+socket()}{check\_connected\_socket()}}
+{\footnotesize\ttfamily int check\+\_\+connected\+\_\+socket (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{udp_8c_a5444cae5002b72381f50851c5a971369}\label{udp_8c_a5444cae5002b72381f50851c5a971369}} 
+\index{udp.\+c@{udp.\+c}!close\+\_\+socket@{close\+\_\+socket}}
+\index{close\+\_\+socket@{close\+\_\+socket}!udp.\+c@{udp.\+c}}
+\subsubsection{\texorpdfstring{close\+\_\+socket()}{close\_socket()}}
+{\footnotesize\ttfamily void close\+\_\+socket (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{udp_8c_a7247edc2dc2dfb7181699f9109676551}\label{udp_8c_a7247edc2dc2dfb7181699f9109676551}} 
+\index{udp.\+c@{udp.\+c}!create\+\_\+udp\+\_\+client@{create\+\_\+udp\+\_\+client}}
+\index{create\+\_\+udp\+\_\+client@{create\+\_\+udp\+\_\+client}!udp.\+c@{udp.\+c}}
+\subsubsection{\texorpdfstring{create\+\_\+udp\+\_\+client()}{create\_udp\_client()}}
+{\footnotesize\ttfamily esp\+\_\+err\+\_\+t create\+\_\+udp\+\_\+client (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+create a udp client socket. return E\+S\+P\+\_\+\+OK\+:success E\+S\+P\+\_\+\+F\+A\+IL\+:erro 
+
+\mbox{\Hypertarget{udp_8c_a07d355941cdd5379965d23b93b3bfdfd}\label{udp_8c_a07d355941cdd5379965d23b93b3bfdfd}} 
+\index{udp.\+c@{udp.\+c}!create\+\_\+udp\+\_\+server@{create\+\_\+udp\+\_\+server}}
+\index{create\+\_\+udp\+\_\+server@{create\+\_\+udp\+\_\+server}!udp.\+c@{udp.\+c}}
+\subsubsection{\texorpdfstring{create\+\_\+udp\+\_\+server()}{create\_udp\_server()}}
+{\footnotesize\ttfamily esp\+\_\+err\+\_\+t create\+\_\+udp\+\_\+server (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{udp_8c_abe0ae4f770e0832708b8fe2dc1535a6a}\label{udp_8c_abe0ae4f770e0832708b8fe2dc1535a6a}} 
+\index{udp.\+c@{udp.\+c}!get\+\_\+socket\+\_\+error\+\_\+code@{get\+\_\+socket\+\_\+error\+\_\+code}}
+\index{get\+\_\+socket\+\_\+error\+\_\+code@{get\+\_\+socket\+\_\+error\+\_\+code}!udp.\+c@{udp.\+c}}
+\subsubsection{\texorpdfstring{get\+\_\+socket\+\_\+error\+\_\+code()}{get\_socket\_error\_code()}}
+{\footnotesize\ttfamily int get\+\_\+socket\+\_\+error\+\_\+code (\begin{DoxyParamCaption}\item[{int}]{socket }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{udp_8c_af6fd7f48781ca5bb99bb9ec8fa94b681}\label{udp_8c_af6fd7f48781ca5bb99bb9ec8fa94b681}} 
+\index{udp.\+c@{udp.\+c}!send\+\_\+recv\+\_\+data@{send\+\_\+recv\+\_\+data}}
+\index{send\+\_\+recv\+\_\+data@{send\+\_\+recv\+\_\+data}!udp.\+c@{udp.\+c}}
+\subsubsection{\texorpdfstring{send\+\_\+recv\+\_\+data()}{send\_recv\_data()}}
+{\footnotesize\ttfamily void send\+\_\+recv\+\_\+data (\begin{DoxyParamCaption}\item[{void $\ast$}]{pv\+Parameters }\end{DoxyParamCaption})}
+
+
+
+send or recv data task 
+
+\mbox{\Hypertarget{udp_8c_a90f32c1cae8587bd09127e4f2d96a676}\label{udp_8c_a90f32c1cae8587bd09127e4f2d96a676}} 
+\index{udp.\+c@{udp.\+c}!show\+\_\+socket\+\_\+error\+\_\+reason@{show\+\_\+socket\+\_\+error\+\_\+reason}}
+\index{show\+\_\+socket\+\_\+error\+\_\+reason@{show\+\_\+socket\+\_\+error\+\_\+reason}!udp.\+c@{udp.\+c}}
+\subsubsection{\texorpdfstring{show\+\_\+socket\+\_\+error\+\_\+reason()}{show\_socket\_error\_reason()}}
+{\footnotesize\ttfamily int show\+\_\+socket\+\_\+error\+\_\+reason (\begin{DoxyParamCaption}\item[{int}]{socket }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{udp_8c_a62dddf76eb27aacde1609464b8d9ebad}\label{udp_8c_a62dddf76eb27aacde1609464b8d9ebad}} 
+\index{udp.\+c@{udp.\+c}!wifi\+\_\+init\+\_\+softap@{wifi\+\_\+init\+\_\+softap}}
+\index{wifi\+\_\+init\+\_\+softap@{wifi\+\_\+init\+\_\+softap}!udp.\+c@{udp.\+c}}
+\subsubsection{\texorpdfstring{wifi\+\_\+init\+\_\+softap()}{wifi\_init\_softap()}}
+{\footnotesize\ttfamily void wifi\+\_\+init\+\_\+softap (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{udp_8c_aaf48dd31815d6c6e4a94cebfb63e56a3}\label{udp_8c_aaf48dd31815d6c6e4a94cebfb63e56a3}} 
+\index{udp.\+c@{udp.\+c}!wifi\+\_\+init\+\_\+sta@{wifi\+\_\+init\+\_\+sta}}
+\index{wifi\+\_\+init\+\_\+sta@{wifi\+\_\+init\+\_\+sta}!udp.\+c@{udp.\+c}}
+\subsubsection{\texorpdfstring{wifi\+\_\+init\+\_\+sta()}{wifi\_init\_sta()}}
+{\footnotesize\ttfamily void wifi\+\_\+init\+\_\+sta (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+using esp as station 
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{udp_8c_a12366c313958ac8ed2ba5fa4c48e4f50}\label{udp_8c_a12366c313958ac8ed2ba5fa4c48e4f50}} 
+\index{udp.\+c@{udp.\+c}!success\+\_\+pack@{success\+\_\+pack}}
+\index{success\+\_\+pack@{success\+\_\+pack}!udp.\+c@{udp.\+c}}
+\subsubsection{\texorpdfstring{success\+\_\+pack}{success\_pack}}
+{\footnotesize\ttfamily int success\+\_\+pack = 0}
+
+\mbox{\Hypertarget{udp_8c_af4bd2463dabf41e5cc56c5a82e4c7d18}\label{udp_8c_af4bd2463dabf41e5cc56c5a82e4c7d18}} 
+\index{udp.\+c@{udp.\+c}!total\+\_\+data@{total\+\_\+data}}
+\index{total\+\_\+data@{total\+\_\+data}!udp.\+c@{udp.\+c}}
+\subsubsection{\texorpdfstring{total\+\_\+data}{total\_data}}
+{\footnotesize\ttfamily int total\+\_\+data = 0}
+
+\mbox{\Hypertarget{udp_8c_a9a4dc52caae187441ef4df0d1c264f49}\label{udp_8c_a9a4dc52caae187441ef4df0d1c264f49}} 
+\index{udp.\+c@{udp.\+c}!udp\+\_\+event\+\_\+group@{udp\+\_\+event\+\_\+group}}
+\index{udp\+\_\+event\+\_\+group@{udp\+\_\+event\+\_\+group}!udp.\+c@{udp.\+c}}
+\subsubsection{\texorpdfstring{udp\+\_\+event\+\_\+group}{udp\_event\_group}}
+{\footnotesize\ttfamily Event\+Group\+Handle\+\_\+t udp\+\_\+event\+\_\+group}
+

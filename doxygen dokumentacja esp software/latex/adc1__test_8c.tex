@@ -1,0 +1,301 @@
+\hypertarget{adc1__test_8c}{}\section{C\+:/\+Users/\+Kuba/\+Documents/\+Praktyki/esp/esp\+Software/main/adc1\+\_\+test.c File Reference}
+\label{adc1__test_8c}\index{C\+:/\+Users/\+Kuba/\+Documents/\+Praktyki/esp/esp\+Software/main/adc1\+\_\+test.\+c@{C\+:/\+Users/\+Kuba/\+Documents/\+Praktyki/esp/esp\+Software/main/adc1\+\_\+test.\+c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}freertos/\+Free\+R\+T\+O\+S.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}freertos/task.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}freertos/queue.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}driver/gpio.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}driver/adc.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}sdkconfig.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}esp\+\_\+system.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}esp\+\_\+log.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}esp\+\_\+types.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}soc/uart\+\_\+struct.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}soc/timer\+\_\+group\+\_\+struct.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$sys/socket.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}esp\+\_\+wifi.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}esp\+\_\+event\+\_\+loop.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}esp\+\_\+err.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}freertos/event\+\_\+groups.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}nvs\+\_\+flash.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}driver/periph\+\_\+ctrl.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}driver/timer.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}driver/uart.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}math.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}udp.\+h\char`\"{}}\newline
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structtimer__event__t}{timer\+\_\+event\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{adc1__test_8c_a90d2d5c526ce5c0a551f533eccbee71a}{A\+D\+C1}~6
+\item 
+\#define \hyperlink{adc1__test_8c_ac5503ae96c26b4475226f96715a1bf1e}{A\+D\+C2}~7
+\item 
+\#define \hyperlink{adc1__test_8c_a093149622ce4516b22819aeebdc6307c}{E\+C\+H\+O\+\_\+\+T\+E\+S\+T\+\_\+\+T\+XD}~(1)
+\item 
+\#define \hyperlink{adc1__test_8c_ac26b907a2c6af43df8f7c24a8b9a31b9}{E\+C\+H\+O\+\_\+\+T\+E\+S\+T\+\_\+\+R\+XD}~(3)
+\item 
+\#define \hyperlink{adc1__test_8c_a7b8e8c3f046122f7473a4415c2b80188}{E\+C\+H\+O\+\_\+\+T\+E\+S\+T\+\_\+\+R\+TS}~(18)
+\item 
+\#define \hyperlink{adc1__test_8c_a32ac500e2c389e600d725b391414c266}{E\+C\+H\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+TS}~(19)
+\item 
+\#define \hyperlink{adc1__test_8c_a6821bafc3c88dfb2e433a095df9940c6}{B\+U\+F\+\_\+\+S\+I\+ZE}~(1024)
+\item 
+\#define \hyperlink{adc1__test_8c_a7f8ff32c3a38156f3bf041e46077b908}{T\+I\+M\+E\+R\+\_\+\+I\+N\+T\+R\+\_\+\+S\+EL}~T\+I\+M\+E\+R\+\_\+\+I\+N\+T\+R\+\_\+\+L\+E\+V\+EL
+\item 
+\#define \hyperlink{adc1__test_8c_ab8573a07cfa51f35caa97d7c9ff8f10b}{T\+I\+M\+E\+R\+\_\+\+D\+I\+V\+I\+D\+ER}~16
+\item 
+\#define \hyperlink{adc1__test_8c_af481492506274f9f33afe1a3b2daa311}{T\+I\+M\+E\+R\+\_\+\+S\+C\+A\+LE}~(T\+I\+M\+E\+R\+\_\+\+B\+A\+S\+E\+\_\+\+C\+LK / \hyperlink{adc1__test_8c_ab8573a07cfa51f35caa97d7c9ff8f10b}{T\+I\+M\+E\+R\+\_\+\+D\+I\+V\+I\+D\+ER})
+\item 
+\#define \hyperlink{adc1__test_8c_abc876884b8064d15313c9e479cd61d4d}{T\+E\+S\+T\+\_\+\+W\+I\+T\+H\+\_\+\+R\+E\+L\+O\+AD}~1
+\item 
+\#define \hyperlink{adc1__test_8c_a13c75a43d73f4a7e959dfd8fd9c99f82}{D\+I\+V\+I\+D\+E\+R\+\_\+\+T\+O\+\_\+\+MS}~1000.\+0
+\item 
+\#define \hyperlink{adc1__test_8c_a2886dc084a4b56dda9e809b20114a319}{pin1}~13
+\item 
+\#define \hyperlink{adc1__test_8c_a68a29e2213b824e0a7207145611faf1f}{pin2}~4
+\item 
+\#define \hyperlink{adc1__test_8c_a602abb8ec84dcb3b6f854a738310ea46}{A\+D\+C\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}~2000
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{adc1__test_8c_a5a343d7baa633a83a79eae7e6405b924}{initialize\+\_\+adcs} ()
+\begin{DoxyCompactList}\small\item\em Initialize A\+D\+Cs with defined pins. \end{DoxyCompactList}\item 
+void \hyperlink{adc1__test_8c_abc18abd4e73f122fa6b9dd44c2b69c13}{adcgetdata} ()
+\begin{DoxyCompactList}\small\item\em functions gets data from adcs, put values into cyclic buffers and update cyclic buffer head, line \char`\"{}adc\+\_\+head\%=\+A\+D\+C\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+Z\+E\char`\"{} checks if adc\+\_\+head is bigger than size and if it is then it\textquotesingle{}s reload it to correct value smaller than buffer size \end{DoxyCompactList}\item 
+void \hyperlink{adc1__test_8c_a0ac5fb006a80b081a5d5ecd55d957b7f}{refresh\+\_\+timer} (int timer\+Group, int Timer\+Index)
+\begin{DoxyCompactList}\small\item\em update a timer when it\textquotesingle{}s period(interval) changed \end{DoxyCompactList}\item 
+void \hyperlink{adc1__test_8c_a415de250b3b27e8a0d63dcc54b070358}{set\+Pin\+Level} (int level1, int level2)
+\begin{DoxyCompactList}\small\item\em change pin level \end{DoxyCompactList}\item 
+void I\+R\+A\+M\+\_\+\+A\+T\+TR \hyperlink{adc1__test_8c_a6d703e2a55a0888d80a1816be7d878b1}{adc1timer1alarm} (void $\ast$para)
+\begin{DoxyCompactList}\small\item\em function executed when alarm hits end value(interval value) used to get data from adc \end{DoxyCompactList}\item 
+void \hyperlink{adc1__test_8c_abce06be17fc37d675118a678a8100a36}{app\+\_\+main} ()
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+x\+Queue\+Handle \hyperlink{adc1__test_8c_a601532668eafeb57cb1ea8a46e1007bb}{timer\+\_\+queue}
+\item 
+int \hyperlink{adc1__test_8c_ac228a8ac1d0702025d1802071cf800ba}{T\+I\+M\+E\+R\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L1\+\_\+\+S\+EC} =2
+\item 
+int \hyperlink{adc1__test_8c_aa30129a5c0ab8c050d4b9e4992153c5a}{adc1data} \mbox{[}\hyperlink{adc1__test_8c_a602abb8ec84dcb3b6f854a738310ea46}{A\+D\+C\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}\mbox{]}
+\item 
+int \hyperlink{adc1__test_8c_a2836d411e57bc79b68a19cb8889660c2}{adc2data} \mbox{[}\hyperlink{adc1__test_8c_a602abb8ec84dcb3b6f854a738310ea46}{A\+D\+C\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}\mbox{]}
+\item 
+volatile int \hyperlink{adc1__test_8c_ad2d32c994b8eca5d2352e885bee772ad}{adc\+\_\+head} = 0
+\item 
+volatile int \hyperlink{adc1__test_8c_a2144da3ce9034ee9e2f4321021d8a3c9}{adc\+\_\+tail} = 0
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{adc1__test_8c_a90d2d5c526ce5c0a551f533eccbee71a}\label{adc1__test_8c_a90d2d5c526ce5c0a551f533eccbee71a}} 
+\index{adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}!A\+D\+C1@{A\+D\+C1}}
+\index{A\+D\+C1@{A\+D\+C1}!adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}}
+\subsubsection{\texorpdfstring{A\+D\+C1}{ADC1}}
+{\footnotesize\ttfamily \#define A\+D\+C1~6}
+
+A\+D\+C1 channel 6 is G\+P\+I\+O34 \mbox{\Hypertarget{adc1__test_8c_ac5503ae96c26b4475226f96715a1bf1e}\label{adc1__test_8c_ac5503ae96c26b4475226f96715a1bf1e}} 
+\index{adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}!A\+D\+C2@{A\+D\+C2}}
+\index{A\+D\+C2@{A\+D\+C2}!adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}}
+\subsubsection{\texorpdfstring{A\+D\+C2}{ADC2}}
+{\footnotesize\ttfamily \#define A\+D\+C2~7}
+
+A\+D\+C1 channel 7 is G\+P\+I\+O35 \mbox{\Hypertarget{adc1__test_8c_a602abb8ec84dcb3b6f854a738310ea46}\label{adc1__test_8c_a602abb8ec84dcb3b6f854a738310ea46}} 
+\index{adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}!A\+D\+C\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE@{A\+D\+C\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}}
+\index{A\+D\+C\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE@{A\+D\+C\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}!adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}}
+\subsubsection{\texorpdfstring{A\+D\+C\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}{ADC\_BUFFER\_SIZE}}
+{\footnotesize\ttfamily \#define A\+D\+C\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE~2000}
+
+circular buffer size \mbox{\Hypertarget{adc1__test_8c_a6821bafc3c88dfb2e433a095df9940c6}\label{adc1__test_8c_a6821bafc3c88dfb2e433a095df9940c6}} 
+\index{adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}!B\+U\+F\+\_\+\+S\+I\+ZE@{B\+U\+F\+\_\+\+S\+I\+ZE}}
+\index{B\+U\+F\+\_\+\+S\+I\+ZE@{B\+U\+F\+\_\+\+S\+I\+ZE}!adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}}
+\subsubsection{\texorpdfstring{B\+U\+F\+\_\+\+S\+I\+ZE}{BUF\_SIZE}}
+{\footnotesize\ttfamily \#define B\+U\+F\+\_\+\+S\+I\+ZE~(1024)}
+
+\mbox{\Hypertarget{adc1__test_8c_a13c75a43d73f4a7e959dfd8fd9c99f82}\label{adc1__test_8c_a13c75a43d73f4a7e959dfd8fd9c99f82}} 
+\index{adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}!D\+I\+V\+I\+D\+E\+R\+\_\+\+T\+O\+\_\+\+MS@{D\+I\+V\+I\+D\+E\+R\+\_\+\+T\+O\+\_\+\+MS}}
+\index{D\+I\+V\+I\+D\+E\+R\+\_\+\+T\+O\+\_\+\+MS@{D\+I\+V\+I\+D\+E\+R\+\_\+\+T\+O\+\_\+\+MS}!adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}}
+\subsubsection{\texorpdfstring{D\+I\+V\+I\+D\+E\+R\+\_\+\+T\+O\+\_\+\+MS}{DIVIDER\_TO\_MS}}
+{\footnotesize\ttfamily \#define D\+I\+V\+I\+D\+E\+R\+\_\+\+T\+O\+\_\+\+MS~1000.\+0}
+
+\mbox{\Hypertarget{adc1__test_8c_a32ac500e2c389e600d725b391414c266}\label{adc1__test_8c_a32ac500e2c389e600d725b391414c266}} 
+\index{adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}!E\+C\+H\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+TS@{E\+C\+H\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+TS}}
+\index{E\+C\+H\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+TS@{E\+C\+H\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+TS}!adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}}
+\subsubsection{\texorpdfstring{E\+C\+H\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+TS}{ECHO\_TEST\_CTS}}
+{\footnotesize\ttfamily \#define E\+C\+H\+O\+\_\+\+T\+E\+S\+T\+\_\+\+C\+TS~(19)}
+
+\mbox{\Hypertarget{adc1__test_8c_a7b8e8c3f046122f7473a4415c2b80188}\label{adc1__test_8c_a7b8e8c3f046122f7473a4415c2b80188}} 
+\index{adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}!E\+C\+H\+O\+\_\+\+T\+E\+S\+T\+\_\+\+R\+TS@{E\+C\+H\+O\+\_\+\+T\+E\+S\+T\+\_\+\+R\+TS}}
+\index{E\+C\+H\+O\+\_\+\+T\+E\+S\+T\+\_\+\+R\+TS@{E\+C\+H\+O\+\_\+\+T\+E\+S\+T\+\_\+\+R\+TS}!adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}}
+\subsubsection{\texorpdfstring{E\+C\+H\+O\+\_\+\+T\+E\+S\+T\+\_\+\+R\+TS}{ECHO\_TEST\_RTS}}
+{\footnotesize\ttfamily \#define E\+C\+H\+O\+\_\+\+T\+E\+S\+T\+\_\+\+R\+TS~(18)}
+
+\mbox{\Hypertarget{adc1__test_8c_ac26b907a2c6af43df8f7c24a8b9a31b9}\label{adc1__test_8c_ac26b907a2c6af43df8f7c24a8b9a31b9}} 
+\index{adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}!E\+C\+H\+O\+\_\+\+T\+E\+S\+T\+\_\+\+R\+XD@{E\+C\+H\+O\+\_\+\+T\+E\+S\+T\+\_\+\+R\+XD}}
+\index{E\+C\+H\+O\+\_\+\+T\+E\+S\+T\+\_\+\+R\+XD@{E\+C\+H\+O\+\_\+\+T\+E\+S\+T\+\_\+\+R\+XD}!adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}}
+\subsubsection{\texorpdfstring{E\+C\+H\+O\+\_\+\+T\+E\+S\+T\+\_\+\+R\+XD}{ECHO\_TEST\_RXD}}
+{\footnotesize\ttfamily \#define E\+C\+H\+O\+\_\+\+T\+E\+S\+T\+\_\+\+R\+XD~(3)}
+
+\mbox{\Hypertarget{adc1__test_8c_a093149622ce4516b22819aeebdc6307c}\label{adc1__test_8c_a093149622ce4516b22819aeebdc6307c}} 
+\index{adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}!E\+C\+H\+O\+\_\+\+T\+E\+S\+T\+\_\+\+T\+XD@{E\+C\+H\+O\+\_\+\+T\+E\+S\+T\+\_\+\+T\+XD}}
+\index{E\+C\+H\+O\+\_\+\+T\+E\+S\+T\+\_\+\+T\+XD@{E\+C\+H\+O\+\_\+\+T\+E\+S\+T\+\_\+\+T\+XD}!adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}}
+\subsubsection{\texorpdfstring{E\+C\+H\+O\+\_\+\+T\+E\+S\+T\+\_\+\+T\+XD}{ECHO\_TEST\_TXD}}
+{\footnotesize\ttfamily \#define E\+C\+H\+O\+\_\+\+T\+E\+S\+T\+\_\+\+T\+XD~(1)}
+
+\mbox{\Hypertarget{adc1__test_8c_a2886dc084a4b56dda9e809b20114a319}\label{adc1__test_8c_a2886dc084a4b56dda9e809b20114a319}} 
+\index{adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}!pin1@{pin1}}
+\index{pin1@{pin1}!adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}}
+\subsubsection{\texorpdfstring{pin1}{pin1}}
+{\footnotesize\ttfamily \#define pin1~13}
+
+G\+P\+IO pin1 \mbox{\Hypertarget{adc1__test_8c_a68a29e2213b824e0a7207145611faf1f}\label{adc1__test_8c_a68a29e2213b824e0a7207145611faf1f}} 
+\index{adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}!pin2@{pin2}}
+\index{pin2@{pin2}!adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}}
+\subsubsection{\texorpdfstring{pin2}{pin2}}
+{\footnotesize\ttfamily \#define pin2~4}
+
+G\+P\+IO pin2 \mbox{\Hypertarget{adc1__test_8c_abc876884b8064d15313c9e479cd61d4d}\label{adc1__test_8c_abc876884b8064d15313c9e479cd61d4d}} 
+\index{adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}!T\+E\+S\+T\+\_\+\+W\+I\+T\+H\+\_\+\+R\+E\+L\+O\+AD@{T\+E\+S\+T\+\_\+\+W\+I\+T\+H\+\_\+\+R\+E\+L\+O\+AD}}
+\index{T\+E\+S\+T\+\_\+\+W\+I\+T\+H\+\_\+\+R\+E\+L\+O\+AD@{T\+E\+S\+T\+\_\+\+W\+I\+T\+H\+\_\+\+R\+E\+L\+O\+AD}!adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}}
+\subsubsection{\texorpdfstring{T\+E\+S\+T\+\_\+\+W\+I\+T\+H\+\_\+\+R\+E\+L\+O\+AD}{TEST\_WITH\_RELOAD}}
+{\footnotesize\ttfamily \#define T\+E\+S\+T\+\_\+\+W\+I\+T\+H\+\_\+\+R\+E\+L\+O\+AD~1}
+
+\mbox{\Hypertarget{adc1__test_8c_ab8573a07cfa51f35caa97d7c9ff8f10b}\label{adc1__test_8c_ab8573a07cfa51f35caa97d7c9ff8f10b}} 
+\index{adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}!T\+I\+M\+E\+R\+\_\+\+D\+I\+V\+I\+D\+ER@{T\+I\+M\+E\+R\+\_\+\+D\+I\+V\+I\+D\+ER}}
+\index{T\+I\+M\+E\+R\+\_\+\+D\+I\+V\+I\+D\+ER@{T\+I\+M\+E\+R\+\_\+\+D\+I\+V\+I\+D\+ER}!adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}}
+\subsubsection{\texorpdfstring{T\+I\+M\+E\+R\+\_\+\+D\+I\+V\+I\+D\+ER}{TIMER\_DIVIDER}}
+{\footnotesize\ttfamily \#define T\+I\+M\+E\+R\+\_\+\+D\+I\+V\+I\+D\+ER~16}
+
+Hardware timer clock divider \mbox{\Hypertarget{adc1__test_8c_a7f8ff32c3a38156f3bf041e46077b908}\label{adc1__test_8c_a7f8ff32c3a38156f3bf041e46077b908}} 
+\index{adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}!T\+I\+M\+E\+R\+\_\+\+I\+N\+T\+R\+\_\+\+S\+EL@{T\+I\+M\+E\+R\+\_\+\+I\+N\+T\+R\+\_\+\+S\+EL}}
+\index{T\+I\+M\+E\+R\+\_\+\+I\+N\+T\+R\+\_\+\+S\+EL@{T\+I\+M\+E\+R\+\_\+\+I\+N\+T\+R\+\_\+\+S\+EL}!adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}}
+\subsubsection{\texorpdfstring{T\+I\+M\+E\+R\+\_\+\+I\+N\+T\+R\+\_\+\+S\+EL}{TIMER\_INTR\_SEL}}
+{\footnotesize\ttfamily \#define T\+I\+M\+E\+R\+\_\+\+I\+N\+T\+R\+\_\+\+S\+EL~T\+I\+M\+E\+R\+\_\+\+I\+N\+T\+R\+\_\+\+L\+E\+V\+EL}
+
+Timer level interrupt \mbox{\Hypertarget{adc1__test_8c_af481492506274f9f33afe1a3b2daa311}\label{adc1__test_8c_af481492506274f9f33afe1a3b2daa311}} 
+\index{adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}!T\+I\+M\+E\+R\+\_\+\+S\+C\+A\+LE@{T\+I\+M\+E\+R\+\_\+\+S\+C\+A\+LE}}
+\index{T\+I\+M\+E\+R\+\_\+\+S\+C\+A\+LE@{T\+I\+M\+E\+R\+\_\+\+S\+C\+A\+LE}!adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}}
+\subsubsection{\texorpdfstring{T\+I\+M\+E\+R\+\_\+\+S\+C\+A\+LE}{TIMER\_SCALE}}
+{\footnotesize\ttfamily \#define T\+I\+M\+E\+R\+\_\+\+S\+C\+A\+LE~(T\+I\+M\+E\+R\+\_\+\+B\+A\+S\+E\+\_\+\+C\+LK / \hyperlink{adc1__test_8c_ab8573a07cfa51f35caa97d7c9ff8f10b}{T\+I\+M\+E\+R\+\_\+\+D\+I\+V\+I\+D\+ER})}
+
+used to calculate counter value 
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{adc1__test_8c_a6d703e2a55a0888d80a1816be7d878b1}\label{adc1__test_8c_a6d703e2a55a0888d80a1816be7d878b1}} 
+\index{adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}!adc1timer1alarm@{adc1timer1alarm}}
+\index{adc1timer1alarm@{adc1timer1alarm}!adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}}
+\subsubsection{\texorpdfstring{adc1timer1alarm()}{adc1timer1alarm()}}
+{\footnotesize\ttfamily void I\+R\+A\+M\+\_\+\+A\+T\+TR adc1timer1alarm (\begin{DoxyParamCaption}\item[{void $\ast$}]{para }\end{DoxyParamCaption})}
+
+
+
+function executed when alarm hits end value(interval value) used to get data from adc 
+
+\mbox{\Hypertarget{adc1__test_8c_abc18abd4e73f122fa6b9dd44c2b69c13}\label{adc1__test_8c_abc18abd4e73f122fa6b9dd44c2b69c13}} 
+\index{adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}!adcgetdata@{adcgetdata}}
+\index{adcgetdata@{adcgetdata}!adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}}
+\subsubsection{\texorpdfstring{adcgetdata()}{adcgetdata()}}
+{\footnotesize\ttfamily void adcgetdata (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+functions gets data from adcs, put values into cyclic buffers and update cyclic buffer head, line \char`\"{}adc\+\_\+head\%=\+A\+D\+C\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+Z\+E\char`\"{} checks if adc\+\_\+head is bigger than size and if it is then it\textquotesingle{}s reload it to correct value smaller than buffer size 
+
+\mbox{\Hypertarget{adc1__test_8c_abce06be17fc37d675118a678a8100a36}\label{adc1__test_8c_abce06be17fc37d675118a678a8100a36}} 
+\index{adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}!app\+\_\+main@{app\+\_\+main}}
+\index{app\+\_\+main@{app\+\_\+main}!adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}}
+\subsubsection{\texorpdfstring{app\+\_\+main()}{app\_main()}}
+{\footnotesize\ttfamily void app\+\_\+main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{adc1__test_8c_a5a343d7baa633a83a79eae7e6405b924}\label{adc1__test_8c_a5a343d7baa633a83a79eae7e6405b924}} 
+\index{adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}!initialize\+\_\+adcs@{initialize\+\_\+adcs}}
+\index{initialize\+\_\+adcs@{initialize\+\_\+adcs}!adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}}
+\subsubsection{\texorpdfstring{initialize\+\_\+adcs()}{initialize\_adcs()}}
+{\footnotesize\ttfamily void initialize\+\_\+adcs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialize A\+D\+Cs with defined pins. 
+
+\mbox{\Hypertarget{adc1__test_8c_a0ac5fb006a80b081a5d5ecd55d957b7f}\label{adc1__test_8c_a0ac5fb006a80b081a5d5ecd55d957b7f}} 
+\index{adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}!refresh\+\_\+timer@{refresh\+\_\+timer}}
+\index{refresh\+\_\+timer@{refresh\+\_\+timer}!adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}}
+\subsubsection{\texorpdfstring{refresh\+\_\+timer()}{refresh\_timer()}}
+{\footnotesize\ttfamily void refresh\+\_\+timer (\begin{DoxyParamCaption}\item[{int}]{timer\+Group,  }\item[{int}]{Timer\+Index }\end{DoxyParamCaption})}
+
+
+
+update a timer when it\textquotesingle{}s period(interval) changed 
+
+
+\begin{DoxyParams}{Parameters}
+{\em timer\+Group} & \\
+\hline
+{\em Timer\+Index} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{adc1__test_8c_a415de250b3b27e8a0d63dcc54b070358}\label{adc1__test_8c_a415de250b3b27e8a0d63dcc54b070358}} 
+\index{adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}!set\+Pin\+Level@{set\+Pin\+Level}}
+\index{set\+Pin\+Level@{set\+Pin\+Level}!adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}}
+\subsubsection{\texorpdfstring{set\+Pin\+Level()}{setPinLevel()}}
+{\footnotesize\ttfamily void set\+Pin\+Level (\begin{DoxyParamCaption}\item[{int}]{level1,  }\item[{int}]{level2 }\end{DoxyParamCaption})}
+
+
+
+change pin level 
+
+
+\begin{DoxyParams}{Parameters}
+{\em level1} & pin1 level \\
+\hline
+{\em level2} & pin2 level \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{adc1__test_8c_aa30129a5c0ab8c050d4b9e4992153c5a}\label{adc1__test_8c_aa30129a5c0ab8c050d4b9e4992153c5a}} 
+\index{adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}!adc1data@{adc1data}}
+\index{adc1data@{adc1data}!adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}}
+\subsubsection{\texorpdfstring{adc1data}{adc1data}}
+{\footnotesize\ttfamily int adc1data\mbox{[}\hyperlink{adc1__test_8c_a602abb8ec84dcb3b6f854a738310ea46}{A\+D\+C\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}\mbox{]}}
+
+current adc1 value \mbox{\Hypertarget{adc1__test_8c_a2836d411e57bc79b68a19cb8889660c2}\label{adc1__test_8c_a2836d411e57bc79b68a19cb8889660c2}} 
+\index{adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}!adc2data@{adc2data}}
+\index{adc2data@{adc2data}!adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}}
+\subsubsection{\texorpdfstring{adc2data}{adc2data}}
+{\footnotesize\ttfamily int adc2data\mbox{[}\hyperlink{adc1__test_8c_a602abb8ec84dcb3b6f854a738310ea46}{A\+D\+C\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}\mbox{]}}
+
+current adc2 value \mbox{\Hypertarget{adc1__test_8c_ad2d32c994b8eca5d2352e885bee772ad}\label{adc1__test_8c_ad2d32c994b8eca5d2352e885bee772ad}} 
+\index{adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}!adc\+\_\+head@{adc\+\_\+head}}
+\index{adc\+\_\+head@{adc\+\_\+head}!adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}}
+\subsubsection{\texorpdfstring{adc\+\_\+head}{adc\_head}}
+{\footnotesize\ttfamily volatile int adc\+\_\+head = 0}
+
+buffer head \mbox{\Hypertarget{adc1__test_8c_a2144da3ce9034ee9e2f4321021d8a3c9}\label{adc1__test_8c_a2144da3ce9034ee9e2f4321021d8a3c9}} 
+\index{adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}!adc\+\_\+tail@{adc\+\_\+tail}}
+\index{adc\+\_\+tail@{adc\+\_\+tail}!adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}}
+\subsubsection{\texorpdfstring{adc\+\_\+tail}{adc\_tail}}
+{\footnotesize\ttfamily volatile int adc\+\_\+tail = 0}
+
+buffer tail \mbox{\Hypertarget{adc1__test_8c_ac228a8ac1d0702025d1802071cf800ba}\label{adc1__test_8c_ac228a8ac1d0702025d1802071cf800ba}} 
+\index{adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}!T\+I\+M\+E\+R\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L1\+\_\+\+S\+EC@{T\+I\+M\+E\+R\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L1\+\_\+\+S\+EC}}
+\index{T\+I\+M\+E\+R\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L1\+\_\+\+S\+EC@{T\+I\+M\+E\+R\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L1\+\_\+\+S\+EC}!adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}}
+\subsubsection{\texorpdfstring{T\+I\+M\+E\+R\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L1\+\_\+\+S\+EC}{TIMER\_INTERVAL1\_SEC}}
+{\footnotesize\ttfamily int T\+I\+M\+E\+R\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L1\+\_\+\+S\+EC =2}
+
+Timer\textquotesingle{}s period \mbox{\Hypertarget{adc1__test_8c_a601532668eafeb57cb1ea8a46e1007bb}\label{adc1__test_8c_a601532668eafeb57cb1ea8a46e1007bb}} 
+\index{adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}!timer\+\_\+queue@{timer\+\_\+queue}}
+\index{timer\+\_\+queue@{timer\+\_\+queue}!adc1\+\_\+test.\+c@{adc1\+\_\+test.\+c}}
+\subsubsection{\texorpdfstring{timer\+\_\+queue}{timer\_queue}}
+{\footnotesize\ttfamily x\+Queue\+Handle timer\+\_\+queue}
+

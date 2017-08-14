@@ -1,0 +1,232 @@
+\hypertarget{udp_8h}{}\section{C\+:/\+Users/\+Kuba/\+Documents/\+Praktyki/esp/esp\+Software/main/udp.h File Reference}
+\label{udp_8h}\index{C\+:/\+Users/\+Kuba/\+Documents/\+Praktyki/esp/esp\+Software/main/udp.\+h@{C\+:/\+Users/\+Kuba/\+Documents/\+Praktyki/esp/esp\+Software/main/udp.\+h}}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{udp_8h_ad57d0a13572b25131806bac3897a5c88}{E\+X\+A\+M\+P\+L\+E\+\_\+\+E\+S\+P\+\_\+\+W\+I\+F\+I\+\_\+\+M\+O\+D\+E\+\_\+\+AP}~0
+\item 
+\#define \hyperlink{udp_8h_a2ab0010cb62897f757ad18f30839486f}{E\+X\+A\+M\+P\+L\+E\+\_\+\+E\+S\+P\+\_\+\+U\+D\+P\+\_\+\+M\+O\+D\+E\+\_\+\+S\+E\+R\+V\+ER}~0
+\item 
+\#define \hyperlink{udp_8h_a4b5779a368409712d6fa59677ca0e8c9}{E\+X\+A\+M\+P\+L\+E\+\_\+\+E\+S\+P\+\_\+\+U\+D\+P\+\_\+\+P\+E\+R\+F\+\_\+\+TX}~1
+\item 
+\#define \hyperlink{udp_8h_abb37844e68b6e5a014290798a26e092b}{E\+X\+A\+M\+P\+L\+E\+\_\+\+P\+A\+C\+K\+\_\+\+B\+Y\+T\+E\+\_\+\+IS}~97
+\item 
+\#define \hyperlink{udp_8h_a35153de6f8c52cb983ee0408b4f40604}{E\+X\+A\+M\+P\+L\+E\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+S\+S\+ID}~\char`\"{}linksys\char`\"{}
+\item 
+\#define \hyperlink{udp_8h_a638c8a9c52254ddf366952944520dd51}{E\+X\+A\+M\+P\+L\+E\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+P\+WD}~\char`\"{}praktyki123\char`\"{}
+\item 
+\#define \hyperlink{udp_8h_a50f788afd81cde5472074effee8e46d0}{E\+X\+A\+M\+P\+L\+E\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+P\+O\+RT}~7755
+\item 
+\#define \hyperlink{udp_8h_ab0fc999f07235cbaaed4af83b851f155}{E\+X\+A\+M\+P\+L\+E\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+IP}~\char`\"{}192.\+168.\+1.\+102\char`\"{}
+\item 
+\#define \hyperlink{udp_8h_a71637a059edf638ddc33a23fd0c27580}{E\+X\+A\+M\+P\+L\+E\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+P\+K\+T\+S\+I\+ZE}~1460
+\item 
+\#define \hyperlink{udp_8h_a531a5f52342686f7bf976f8c3db1acea}{E\+X\+A\+M\+P\+L\+E\+\_\+\+M\+A\+X\+\_\+\+S\+T\+A\+\_\+\+C\+O\+NN}~1
+\item 
+\#define \hyperlink{udp_8h_afc3d101f633a076cc1ca84b85b6224b2}{T\+AG}~\char`\"{}udp\+\_\+perf\+:\char`\"{}
+\item 
+\#define \hyperlink{udp_8h_ad552e7688532cbbecd3967538ced06ac}{W\+I\+F\+I\+\_\+\+C\+O\+N\+N\+E\+C\+T\+E\+D\+\_\+\+B\+IT}~B\+I\+T0
+\item 
+\#define \hyperlink{udp_8h_a0b362d5cb1cdc95553f581d98da34282}{U\+D\+P\+\_\+\+C\+O\+N\+N\+C\+E\+T\+E\+D\+\_\+\+S\+U\+C\+C\+E\+SS}~B\+I\+T1
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{udp_8h_aaf48dd31815d6c6e4a94cebfb63e56a3}{wifi\+\_\+init\+\_\+sta} ()
+\begin{DoxyCompactList}\small\item\em using esp as station \end{DoxyCompactList}\item 
+void \hyperlink{udp_8h_a62dddf76eb27aacde1609464b8d9ebad}{wifi\+\_\+init\+\_\+softap} ()
+\item 
+esp\+\_\+err\+\_\+t \hyperlink{udp_8h_a07d355941cdd5379965d23b93b3bfdfd}{create\+\_\+udp\+\_\+server} ()
+\item 
+esp\+\_\+err\+\_\+t \hyperlink{udp_8h_a7247edc2dc2dfb7181699f9109676551}{create\+\_\+udp\+\_\+client} ()
+\begin{DoxyCompactList}\small\item\em create a udp client socket. return E\+S\+P\+\_\+\+OK\+:success E\+S\+P\+\_\+\+F\+A\+IL\+:erro \end{DoxyCompactList}\item 
+void \hyperlink{udp_8h_af6fd7f48781ca5bb99bb9ec8fa94b681}{send\+\_\+recv\+\_\+data} (void $\ast$pv\+Parameters)
+\begin{DoxyCompactList}\small\item\em send or recv data task \end{DoxyCompactList}\item 
+int \hyperlink{udp_8h_abe0ae4f770e0832708b8fe2dc1535a6a}{get\+\_\+socket\+\_\+error\+\_\+code} (int socket)
+\item 
+int \hyperlink{udp_8h_a90f32c1cae8587bd09127e4f2d96a676}{show\+\_\+socket\+\_\+error\+\_\+reason} (int socket)
+\item 
+int \hyperlink{udp_8h_aca28781eb0afe5c11690ec94a522e9d3}{check\+\_\+connected\+\_\+socket} ()
+\item 
+void \hyperlink{udp_8h_a5444cae5002b72381f50851c5a971369}{close\+\_\+socket} ()
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+Event\+Group\+Handle\+\_\+t \hyperlink{udp_8h_a9a4dc52caae187441ef4df0d1c264f49}{udp\+\_\+event\+\_\+group}
+\item 
+int \hyperlink{udp_8h_af4bd2463dabf41e5cc56c5a82e4c7d18}{total\+\_\+data}
+\item 
+int \hyperlink{udp_8h_a12366c313958ac8ed2ba5fa4c48e4f50}{success\+\_\+pack}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{udp_8h_a71637a059edf638ddc33a23fd0c27580}\label{udp_8h_a71637a059edf638ddc33a23fd0c27580}} 
+\index{udp.\+h@{udp.\+h}!E\+X\+A\+M\+P\+L\+E\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+P\+K\+T\+S\+I\+ZE@{E\+X\+A\+M\+P\+L\+E\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+P\+K\+T\+S\+I\+ZE}}
+\index{E\+X\+A\+M\+P\+L\+E\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+P\+K\+T\+S\+I\+ZE@{E\+X\+A\+M\+P\+L\+E\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+P\+K\+T\+S\+I\+ZE}!udp.\+h@{udp.\+h}}
+\subsubsection{\texorpdfstring{E\+X\+A\+M\+P\+L\+E\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+P\+K\+T\+S\+I\+ZE}{EXAMPLE\_DEFAULT\_PKTSIZE}}
+{\footnotesize\ttfamily \#define E\+X\+A\+M\+P\+L\+E\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+P\+K\+T\+S\+I\+ZE~1460}
+
+default pktsize, value copied from example \mbox{\Hypertarget{udp_8h_a50f788afd81cde5472074effee8e46d0}\label{udp_8h_a50f788afd81cde5472074effee8e46d0}} 
+\index{udp.\+h@{udp.\+h}!E\+X\+A\+M\+P\+L\+E\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+P\+O\+RT@{E\+X\+A\+M\+P\+L\+E\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+P\+O\+RT}}
+\index{E\+X\+A\+M\+P\+L\+E\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+P\+O\+RT@{E\+X\+A\+M\+P\+L\+E\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+P\+O\+RT}!udp.\+h@{udp.\+h}}
+\subsubsection{\texorpdfstring{E\+X\+A\+M\+P\+L\+E\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+P\+O\+RT}{EXAMPLE\_DEFAULT\_PORT}}
+{\footnotesize\ttfamily \#define E\+X\+A\+M\+P\+L\+E\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+P\+O\+RT~7755}
+
+default port used to tests, port type is uint16\+\_\+t \mbox{\Hypertarget{udp_8h_a638c8a9c52254ddf366952944520dd51}\label{udp_8h_a638c8a9c52254ddf366952944520dd51}} 
+\index{udp.\+h@{udp.\+h}!E\+X\+A\+M\+P\+L\+E\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+P\+WD@{E\+X\+A\+M\+P\+L\+E\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+P\+WD}}
+\index{E\+X\+A\+M\+P\+L\+E\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+P\+WD@{E\+X\+A\+M\+P\+L\+E\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+P\+WD}!udp.\+h@{udp.\+h}}
+\subsubsection{\texorpdfstring{E\+X\+A\+M\+P\+L\+E\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+P\+WD}{EXAMPLE\_DEFAULT\_PWD}}
+{\footnotesize\ttfamily \#define E\+X\+A\+M\+P\+L\+E\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+P\+WD~\char`\"{}praktyki123\char`\"{}}
+
+default password used to tests \mbox{\Hypertarget{udp_8h_ab0fc999f07235cbaaed4af83b851f155}\label{udp_8h_ab0fc999f07235cbaaed4af83b851f155}} 
+\index{udp.\+h@{udp.\+h}!E\+X\+A\+M\+P\+L\+E\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+IP@{E\+X\+A\+M\+P\+L\+E\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+IP}}
+\index{E\+X\+A\+M\+P\+L\+E\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+IP@{E\+X\+A\+M\+P\+L\+E\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+IP}!udp.\+h@{udp.\+h}}
+\subsubsection{\texorpdfstring{E\+X\+A\+M\+P\+L\+E\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+IP}{EXAMPLE\_DEFAULT\_SERVER\_IP}}
+{\footnotesize\ttfamily \#define E\+X\+A\+M\+P\+L\+E\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+IP~\char`\"{}192.\+168.\+1.\+102\char`\"{}}
+
+default server ip used to tests \mbox{\Hypertarget{udp_8h_a35153de6f8c52cb983ee0408b4f40604}\label{udp_8h_a35153de6f8c52cb983ee0408b4f40604}} 
+\index{udp.\+h@{udp.\+h}!E\+X\+A\+M\+P\+L\+E\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+S\+S\+ID@{E\+X\+A\+M\+P\+L\+E\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+S\+S\+ID}}
+\index{E\+X\+A\+M\+P\+L\+E\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+S\+S\+ID@{E\+X\+A\+M\+P\+L\+E\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+S\+S\+ID}!udp.\+h@{udp.\+h}}
+\subsubsection{\texorpdfstring{E\+X\+A\+M\+P\+L\+E\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+S\+S\+ID}{EXAMPLE\_DEFAULT\_SSID}}
+{\footnotesize\ttfamily \#define E\+X\+A\+M\+P\+L\+E\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+S\+S\+ID~\char`\"{}linksys\char`\"{}}
+
+default S\+S\+ID used to tests \mbox{\Hypertarget{udp_8h_a2ab0010cb62897f757ad18f30839486f}\label{udp_8h_a2ab0010cb62897f757ad18f30839486f}} 
+\index{udp.\+h@{udp.\+h}!E\+X\+A\+M\+P\+L\+E\+\_\+\+E\+S\+P\+\_\+\+U\+D\+P\+\_\+\+M\+O\+D\+E\+\_\+\+S\+E\+R\+V\+ER@{E\+X\+A\+M\+P\+L\+E\+\_\+\+E\+S\+P\+\_\+\+U\+D\+P\+\_\+\+M\+O\+D\+E\+\_\+\+S\+E\+R\+V\+ER}}
+\index{E\+X\+A\+M\+P\+L\+E\+\_\+\+E\+S\+P\+\_\+\+U\+D\+P\+\_\+\+M\+O\+D\+E\+\_\+\+S\+E\+R\+V\+ER@{E\+X\+A\+M\+P\+L\+E\+\_\+\+E\+S\+P\+\_\+\+U\+D\+P\+\_\+\+M\+O\+D\+E\+\_\+\+S\+E\+R\+V\+ER}!udp.\+h@{udp.\+h}}
+\subsubsection{\texorpdfstring{E\+X\+A\+M\+P\+L\+E\+\_\+\+E\+S\+P\+\_\+\+U\+D\+P\+\_\+\+M\+O\+D\+E\+\_\+\+S\+E\+R\+V\+ER}{EXAMPLE\_ESP\_UDP\_MODE\_SERVER}}
+{\footnotesize\ttfamily \#define E\+X\+A\+M\+P\+L\+E\+\_\+\+E\+S\+P\+\_\+\+U\+D\+P\+\_\+\+M\+O\+D\+E\+\_\+\+S\+E\+R\+V\+ER~0}
+
+T\+R\+UE\+:server F\+A\+L\+SE\+:client \mbox{\Hypertarget{udp_8h_a4b5779a368409712d6fa59677ca0e8c9}\label{udp_8h_a4b5779a368409712d6fa59677ca0e8c9}} 
+\index{udp.\+h@{udp.\+h}!E\+X\+A\+M\+P\+L\+E\+\_\+\+E\+S\+P\+\_\+\+U\+D\+P\+\_\+\+P\+E\+R\+F\+\_\+\+TX@{E\+X\+A\+M\+P\+L\+E\+\_\+\+E\+S\+P\+\_\+\+U\+D\+P\+\_\+\+P\+E\+R\+F\+\_\+\+TX}}
+\index{E\+X\+A\+M\+P\+L\+E\+\_\+\+E\+S\+P\+\_\+\+U\+D\+P\+\_\+\+P\+E\+R\+F\+\_\+\+TX@{E\+X\+A\+M\+P\+L\+E\+\_\+\+E\+S\+P\+\_\+\+U\+D\+P\+\_\+\+P\+E\+R\+F\+\_\+\+TX}!udp.\+h@{udp.\+h}}
+\subsubsection{\texorpdfstring{E\+X\+A\+M\+P\+L\+E\+\_\+\+E\+S\+P\+\_\+\+U\+D\+P\+\_\+\+P\+E\+R\+F\+\_\+\+TX}{EXAMPLE\_ESP\_UDP\_PERF\_TX}}
+{\footnotesize\ttfamily \#define E\+X\+A\+M\+P\+L\+E\+\_\+\+E\+S\+P\+\_\+\+U\+D\+P\+\_\+\+P\+E\+R\+F\+\_\+\+TX~1}
+
+T\+R\+UE\+:send F\+A\+L\+SE\+:receive \mbox{\Hypertarget{udp_8h_ad57d0a13572b25131806bac3897a5c88}\label{udp_8h_ad57d0a13572b25131806bac3897a5c88}} 
+\index{udp.\+h@{udp.\+h}!E\+X\+A\+M\+P\+L\+E\+\_\+\+E\+S\+P\+\_\+\+W\+I\+F\+I\+\_\+\+M\+O\+D\+E\+\_\+\+AP@{E\+X\+A\+M\+P\+L\+E\+\_\+\+E\+S\+P\+\_\+\+W\+I\+F\+I\+\_\+\+M\+O\+D\+E\+\_\+\+AP}}
+\index{E\+X\+A\+M\+P\+L\+E\+\_\+\+E\+S\+P\+\_\+\+W\+I\+F\+I\+\_\+\+M\+O\+D\+E\+\_\+\+AP@{E\+X\+A\+M\+P\+L\+E\+\_\+\+E\+S\+P\+\_\+\+W\+I\+F\+I\+\_\+\+M\+O\+D\+E\+\_\+\+AP}!udp.\+h@{udp.\+h}}
+\subsubsection{\texorpdfstring{E\+X\+A\+M\+P\+L\+E\+\_\+\+E\+S\+P\+\_\+\+W\+I\+F\+I\+\_\+\+M\+O\+D\+E\+\_\+\+AP}{EXAMPLE\_ESP\_WIFI\_MODE\_AP}}
+{\footnotesize\ttfamily \#define E\+X\+A\+M\+P\+L\+E\+\_\+\+E\+S\+P\+\_\+\+W\+I\+F\+I\+\_\+\+M\+O\+D\+E\+\_\+\+AP~0}
+
+T\+R\+UE\+:AP F\+A\+L\+SE\+:S\+TA \mbox{\Hypertarget{udp_8h_a531a5f52342686f7bf976f8c3db1acea}\label{udp_8h_a531a5f52342686f7bf976f8c3db1acea}} 
+\index{udp.\+h@{udp.\+h}!E\+X\+A\+M\+P\+L\+E\+\_\+\+M\+A\+X\+\_\+\+S\+T\+A\+\_\+\+C\+O\+NN@{E\+X\+A\+M\+P\+L\+E\+\_\+\+M\+A\+X\+\_\+\+S\+T\+A\+\_\+\+C\+O\+NN}}
+\index{E\+X\+A\+M\+P\+L\+E\+\_\+\+M\+A\+X\+\_\+\+S\+T\+A\+\_\+\+C\+O\+NN@{E\+X\+A\+M\+P\+L\+E\+\_\+\+M\+A\+X\+\_\+\+S\+T\+A\+\_\+\+C\+O\+NN}!udp.\+h@{udp.\+h}}
+\subsubsection{\texorpdfstring{E\+X\+A\+M\+P\+L\+E\+\_\+\+M\+A\+X\+\_\+\+S\+T\+A\+\_\+\+C\+O\+NN}{EXAMPLE\_MAX\_STA\_CONN}}
+{\footnotesize\ttfamily \#define E\+X\+A\+M\+P\+L\+E\+\_\+\+M\+A\+X\+\_\+\+S\+T\+A\+\_\+\+C\+O\+NN~1}
+
+how many sta can be connected(\+A\+P mode) \mbox{\Hypertarget{udp_8h_abb37844e68b6e5a014290798a26e092b}\label{udp_8h_abb37844e68b6e5a014290798a26e092b}} 
+\index{udp.\+h@{udp.\+h}!E\+X\+A\+M\+P\+L\+E\+\_\+\+P\+A\+C\+K\+\_\+\+B\+Y\+T\+E\+\_\+\+IS@{E\+X\+A\+M\+P\+L\+E\+\_\+\+P\+A\+C\+K\+\_\+\+B\+Y\+T\+E\+\_\+\+IS}}
+\index{E\+X\+A\+M\+P\+L\+E\+\_\+\+P\+A\+C\+K\+\_\+\+B\+Y\+T\+E\+\_\+\+IS@{E\+X\+A\+M\+P\+L\+E\+\_\+\+P\+A\+C\+K\+\_\+\+B\+Y\+T\+E\+\_\+\+IS}!udp.\+h@{udp.\+h}}
+\subsubsection{\texorpdfstring{E\+X\+A\+M\+P\+L\+E\+\_\+\+P\+A\+C\+K\+\_\+\+B\+Y\+T\+E\+\_\+\+IS}{EXAMPLE\_PACK\_BYTE\_IS}}
+{\footnotesize\ttfamily \#define E\+X\+A\+M\+P\+L\+E\+\_\+\+P\+A\+C\+K\+\_\+\+B\+Y\+T\+E\+\_\+\+IS~97}
+
+\textquotesingle{}a\textquotesingle{} \mbox{\Hypertarget{udp_8h_afc3d101f633a076cc1ca84b85b6224b2}\label{udp_8h_afc3d101f633a076cc1ca84b85b6224b2}} 
+\index{udp.\+h@{udp.\+h}!T\+AG@{T\+AG}}
+\index{T\+AG@{T\+AG}!udp.\+h@{udp.\+h}}
+\subsubsection{\texorpdfstring{T\+AG}{TAG}}
+{\footnotesize\ttfamily \#define T\+AG~\char`\"{}udp\+\_\+perf\+:\char`\"{}}
+
+\mbox{\Hypertarget{udp_8h_a0b362d5cb1cdc95553f581d98da34282}\label{udp_8h_a0b362d5cb1cdc95553f581d98da34282}} 
+\index{udp.\+h@{udp.\+h}!U\+D\+P\+\_\+\+C\+O\+N\+N\+C\+E\+T\+E\+D\+\_\+\+S\+U\+C\+C\+E\+SS@{U\+D\+P\+\_\+\+C\+O\+N\+N\+C\+E\+T\+E\+D\+\_\+\+S\+U\+C\+C\+E\+SS}}
+\index{U\+D\+P\+\_\+\+C\+O\+N\+N\+C\+E\+T\+E\+D\+\_\+\+S\+U\+C\+C\+E\+SS@{U\+D\+P\+\_\+\+C\+O\+N\+N\+C\+E\+T\+E\+D\+\_\+\+S\+U\+C\+C\+E\+SS}!udp.\+h@{udp.\+h}}
+\subsubsection{\texorpdfstring{U\+D\+P\+\_\+\+C\+O\+N\+N\+C\+E\+T\+E\+D\+\_\+\+S\+U\+C\+C\+E\+SS}{UDP\_CONNCETED\_SUCCESS}}
+{\footnotesize\ttfamily \#define U\+D\+P\+\_\+\+C\+O\+N\+N\+C\+E\+T\+E\+D\+\_\+\+S\+U\+C\+C\+E\+SS~B\+I\+T1}
+
+\mbox{\Hypertarget{udp_8h_ad552e7688532cbbecd3967538ced06ac}\label{udp_8h_ad552e7688532cbbecd3967538ced06ac}} 
+\index{udp.\+h@{udp.\+h}!W\+I\+F\+I\+\_\+\+C\+O\+N\+N\+E\+C\+T\+E\+D\+\_\+\+B\+IT@{W\+I\+F\+I\+\_\+\+C\+O\+N\+N\+E\+C\+T\+E\+D\+\_\+\+B\+IT}}
+\index{W\+I\+F\+I\+\_\+\+C\+O\+N\+N\+E\+C\+T\+E\+D\+\_\+\+B\+IT@{W\+I\+F\+I\+\_\+\+C\+O\+N\+N\+E\+C\+T\+E\+D\+\_\+\+B\+IT}!udp.\+h@{udp.\+h}}
+\subsubsection{\texorpdfstring{W\+I\+F\+I\+\_\+\+C\+O\+N\+N\+E\+C\+T\+E\+D\+\_\+\+B\+IT}{WIFI\_CONNECTED\_BIT}}
+{\footnotesize\ttfamily \#define W\+I\+F\+I\+\_\+\+C\+O\+N\+N\+E\+C\+T\+E\+D\+\_\+\+B\+IT~B\+I\+T0}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{udp_8h_aca28781eb0afe5c11690ec94a522e9d3}\label{udp_8h_aca28781eb0afe5c11690ec94a522e9d3}} 
+\index{udp.\+h@{udp.\+h}!check\+\_\+connected\+\_\+socket@{check\+\_\+connected\+\_\+socket}}
+\index{check\+\_\+connected\+\_\+socket@{check\+\_\+connected\+\_\+socket}!udp.\+h@{udp.\+h}}
+\subsubsection{\texorpdfstring{check\+\_\+connected\+\_\+socket()}{check\_connected\_socket()}}
+{\footnotesize\ttfamily int check\+\_\+connected\+\_\+socket (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{udp_8h_a5444cae5002b72381f50851c5a971369}\label{udp_8h_a5444cae5002b72381f50851c5a971369}} 
+\index{udp.\+h@{udp.\+h}!close\+\_\+socket@{close\+\_\+socket}}
+\index{close\+\_\+socket@{close\+\_\+socket}!udp.\+h@{udp.\+h}}
+\subsubsection{\texorpdfstring{close\+\_\+socket()}{close\_socket()}}
+{\footnotesize\ttfamily void close\+\_\+socket (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{udp_8h_a7247edc2dc2dfb7181699f9109676551}\label{udp_8h_a7247edc2dc2dfb7181699f9109676551}} 
+\index{udp.\+h@{udp.\+h}!create\+\_\+udp\+\_\+client@{create\+\_\+udp\+\_\+client}}
+\index{create\+\_\+udp\+\_\+client@{create\+\_\+udp\+\_\+client}!udp.\+h@{udp.\+h}}
+\subsubsection{\texorpdfstring{create\+\_\+udp\+\_\+client()}{create\_udp\_client()}}
+{\footnotesize\ttfamily esp\+\_\+err\+\_\+t create\+\_\+udp\+\_\+client (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+create a udp client socket. return E\+S\+P\+\_\+\+OK\+:success E\+S\+P\+\_\+\+F\+A\+IL\+:erro 
+
+\mbox{\Hypertarget{udp_8h_a07d355941cdd5379965d23b93b3bfdfd}\label{udp_8h_a07d355941cdd5379965d23b93b3bfdfd}} 
+\index{udp.\+h@{udp.\+h}!create\+\_\+udp\+\_\+server@{create\+\_\+udp\+\_\+server}}
+\index{create\+\_\+udp\+\_\+server@{create\+\_\+udp\+\_\+server}!udp.\+h@{udp.\+h}}
+\subsubsection{\texorpdfstring{create\+\_\+udp\+\_\+server()}{create\_udp\_server()}}
+{\footnotesize\ttfamily esp\+\_\+err\+\_\+t create\+\_\+udp\+\_\+server (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{udp_8h_abe0ae4f770e0832708b8fe2dc1535a6a}\label{udp_8h_abe0ae4f770e0832708b8fe2dc1535a6a}} 
+\index{udp.\+h@{udp.\+h}!get\+\_\+socket\+\_\+error\+\_\+code@{get\+\_\+socket\+\_\+error\+\_\+code}}
+\index{get\+\_\+socket\+\_\+error\+\_\+code@{get\+\_\+socket\+\_\+error\+\_\+code}!udp.\+h@{udp.\+h}}
+\subsubsection{\texorpdfstring{get\+\_\+socket\+\_\+error\+\_\+code()}{get\_socket\_error\_code()}}
+{\footnotesize\ttfamily int get\+\_\+socket\+\_\+error\+\_\+code (\begin{DoxyParamCaption}\item[{int}]{socket }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{udp_8h_af6fd7f48781ca5bb99bb9ec8fa94b681}\label{udp_8h_af6fd7f48781ca5bb99bb9ec8fa94b681}} 
+\index{udp.\+h@{udp.\+h}!send\+\_\+recv\+\_\+data@{send\+\_\+recv\+\_\+data}}
+\index{send\+\_\+recv\+\_\+data@{send\+\_\+recv\+\_\+data}!udp.\+h@{udp.\+h}}
+\subsubsection{\texorpdfstring{send\+\_\+recv\+\_\+data()}{send\_recv\_data()}}
+{\footnotesize\ttfamily void send\+\_\+recv\+\_\+data (\begin{DoxyParamCaption}\item[{void $\ast$}]{pv\+Parameters }\end{DoxyParamCaption})}
+
+
+
+send or recv data task 
+
+\mbox{\Hypertarget{udp_8h_a90f32c1cae8587bd09127e4f2d96a676}\label{udp_8h_a90f32c1cae8587bd09127e4f2d96a676}} 
+\index{udp.\+h@{udp.\+h}!show\+\_\+socket\+\_\+error\+\_\+reason@{show\+\_\+socket\+\_\+error\+\_\+reason}}
+\index{show\+\_\+socket\+\_\+error\+\_\+reason@{show\+\_\+socket\+\_\+error\+\_\+reason}!udp.\+h@{udp.\+h}}
+\subsubsection{\texorpdfstring{show\+\_\+socket\+\_\+error\+\_\+reason()}{show\_socket\_error\_reason()}}
+{\footnotesize\ttfamily int show\+\_\+socket\+\_\+error\+\_\+reason (\begin{DoxyParamCaption}\item[{int}]{socket }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{udp_8h_a62dddf76eb27aacde1609464b8d9ebad}\label{udp_8h_a62dddf76eb27aacde1609464b8d9ebad}} 
+\index{udp.\+h@{udp.\+h}!wifi\+\_\+init\+\_\+softap@{wifi\+\_\+init\+\_\+softap}}
+\index{wifi\+\_\+init\+\_\+softap@{wifi\+\_\+init\+\_\+softap}!udp.\+h@{udp.\+h}}
+\subsubsection{\texorpdfstring{wifi\+\_\+init\+\_\+softap()}{wifi\_init\_softap()}}
+{\footnotesize\ttfamily void wifi\+\_\+init\+\_\+softap (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{udp_8h_aaf48dd31815d6c6e4a94cebfb63e56a3}\label{udp_8h_aaf48dd31815d6c6e4a94cebfb63e56a3}} 
+\index{udp.\+h@{udp.\+h}!wifi\+\_\+init\+\_\+sta@{wifi\+\_\+init\+\_\+sta}}
+\index{wifi\+\_\+init\+\_\+sta@{wifi\+\_\+init\+\_\+sta}!udp.\+h@{udp.\+h}}
+\subsubsection{\texorpdfstring{wifi\+\_\+init\+\_\+sta()}{wifi\_init\_sta()}}
+{\footnotesize\ttfamily void wifi\+\_\+init\+\_\+sta (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+using esp as station 
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{udp_8h_a12366c313958ac8ed2ba5fa4c48e4f50}\label{udp_8h_a12366c313958ac8ed2ba5fa4c48e4f50}} 
+\index{udp.\+h@{udp.\+h}!success\+\_\+pack@{success\+\_\+pack}}
+\index{success\+\_\+pack@{success\+\_\+pack}!udp.\+h@{udp.\+h}}
+\subsubsection{\texorpdfstring{success\+\_\+pack}{success\_pack}}
+{\footnotesize\ttfamily int success\+\_\+pack}
+
+\mbox{\Hypertarget{udp_8h_af4bd2463dabf41e5cc56c5a82e4c7d18}\label{udp_8h_af4bd2463dabf41e5cc56c5a82e4c7d18}} 
+\index{udp.\+h@{udp.\+h}!total\+\_\+data@{total\+\_\+data}}
+\index{total\+\_\+data@{total\+\_\+data}!udp.\+h@{udp.\+h}}
+\subsubsection{\texorpdfstring{total\+\_\+data}{total\_data}}
+{\footnotesize\ttfamily int total\+\_\+data}
+
+\mbox{\Hypertarget{udp_8h_a9a4dc52caae187441ef4df0d1c264f49}\label{udp_8h_a9a4dc52caae187441ef4df0d1c264f49}} 
+\index{udp.\+h@{udp.\+h}!udp\+\_\+event\+\_\+group@{udp\+\_\+event\+\_\+group}}
+\index{udp\+\_\+event\+\_\+group@{udp\+\_\+event\+\_\+group}!udp.\+h@{udp.\+h}}
+\subsubsection{\texorpdfstring{udp\+\_\+event\+\_\+group}{udp\_event\_group}}
+{\footnotesize\ttfamily Event\+Group\+Handle\+\_\+t udp\+\_\+event\+\_\+group}
+

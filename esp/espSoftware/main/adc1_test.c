@@ -1,13 +1,3 @@
-/* ADC1 Example
-
-   This example code is in the Public Domain (or CC0 licensed, at your option.)
-
-   Unless required by applicable law or agreed to in writing, this
-   software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
-   CONDITIONS OF ANY KIND, either express or implied.
- */
-
-
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -23,17 +13,24 @@
 #include "soc/uart_struct.h"
 #include "soc/timer_group_struct.h"
 
+#include <sys/socket.h>
+#include "esp_wifi.h"
+#include "esp_event_loop.h"
+#include "esp_log.h"
+#include "esp_err.h"
+#include <errno.h>
+#include "freertos/event_groups.h"
+
 #include "nvs_flash.h"
 #include "driver/periph_ctrl.h"
 #include "driver/timer.h"
 #include "driver/uart.h"
 #include "math.h"
-
+#include "udp.h"
 
 //For ADC
 #define ADC1 6 /*!< ADC1 channel 6 is GPIO34 */
 #define ADC2 7 /*!< ADC1 channel 7 is GPIO35 */
-
 //-------------------------
 
 //For UART - there are
@@ -47,28 +44,25 @@
 
 //For Timer
 #define TIMER_INTR_SEL TIMER_INTR_LEVEL  /*!< Timer level interrupt */
-#define TIMER_GROUP    TIMER_GROUP_0     /*!< Test on timer group 0 */
+//#define TIMER_GROUP    TIMER_GROUP_1     /*!< Test on timer group 0 */
 #define TIMER_DIVIDER   16               /*!< Hardware timer clock divider */
 #define TIMER_SCALE    (TIMER_BASE_CLK / TIMER_DIVIDER)  /*!< used to calculate counter value */
-#define TIMER_FINE_ADJ   (1.4*(TIMER_BASE_CLK / TIMER_DIVIDER)/1000000) /*!< used to compensate alarm value */
-//#define TIMER_INTERVAL0_SEC   (3.4179)   /*!< test interval for timer 0 */
-//#define TEST_WITHOUT_RELOAD   0   /*!< example of auto-reload mode */
 xQueueHandle timer_queue;
-#define TEST_WITH_RELOAD   1      /*!< example without auto-reload mode */
+#define TEST_WITH_RELOAD   1
 #define DIVIDER_TO_MS 1000.0
-int TIMER_INTERVAL1_SEC=2;
+int TIMER_INTERVAL1_SEC=2;  /*!< Timer's period */
 //--------------------------
 
 //For setting pin level
-#define pin1 13
-#define pin2 4
+#define pin1 13 /*!< GPIO pin1 */
+#define pin2 4  /*!< GPIO pin2 */
 
 
-#define ADC_BUFFER_SIZE 2000
-int adc1data[ADC_BUFFER_SIZE];
-int adc2data[ADC_BUFFER_SIZE];
-volatile int adc_head = 0;
-volatile int adc_tail = 0;
+#define ADC_BUFFER_SIZE 2000 /*!< circular buffer size */
+int adc1data[ADC_BUFFER_SIZE]; /*!< current adc1 value */
+int adc2data[ADC_BUFFER_SIZE]; /*!< current adc2 value */
+volatile int adc_head = 0; /*!< buffer head */
+volatile int adc_tail = 0; /*!< buffer tail */
 
 typedef struct {
 	int type;                  /*!< event type */
@@ -78,13 +72,19 @@ typedef struct {
 	double time_sec;           /*!< calculated time from counter value */
 } timer_event_t;
 
+
+/**
+ *\brief Initialize ADCs with defined pins
+ */
 void initialize_adcs()
 {
 	adc1_config_width(ADC_WIDTH_12Bit);
 	adc1_config_channel_atten(ADC1,ADC_ATTEN_11db);
 	adc1_config_channel_atten(ADC2,ADC_ATTEN_11db);
 }
-
+/**
+ *\brief functions gets data from adcs, put values into cyclic buffers and update cyclic buffer head, line "adc_head%=ADC_BUFFER_SIZE" checks if adc_head is bigger than size and if it is then it's reload it to correct value smaller than buffer size
+ */
 void adcgetdata()
 {
 	adc1data[adc_head]=adc1_get_voltage(ADC1);
@@ -92,7 +92,11 @@ void adcgetdata()
 	adc_head++;
 	adc_head%=ADC_BUFFER_SIZE;
 }
-
+/**
+ *\brief update a timer when it's period(interval) changed
+ *\param timerGroup
+ *\param TimerIndex
+ */
 void refresh_timer(int timerGroup, int TimerIndex)
 {
 	timer_pause(timerGroup, TimerIndex); //stopping timer
@@ -101,7 +105,11 @@ void refresh_timer(int timerGroup, int TimerIndex)
 	timer_set_alarm_value(timerGroup, TimerIndex, (double)(TIMER_INTERVAL1_SEC/DIVIDER_TO_MS) * TIMER_SCALE); // setting a time when timer hits end value(when timer hits end value it start a alarm task)
 	timer_start(timerGroup, TimerIndex); //starting timer
 }
-
+/**
+ *\brief change pin level
+ *\param level1 pin1 level
+ *\param level2 pin2 level
+ */
 void setPinLevel(int level1, int level2)
 {
 	gpio_pad_select_gpio(pin1);
@@ -127,7 +135,11 @@ static void timer_example_evt_task(void *arg)
 }
  */
 
-void IRAM_ATTR adc1timer1alarm(void *para)//function executed when alarm hits end value(end value is TIMER_INTERVAL1_SEC * TIMER_SCALE)
+/**
+ *
+ *\brief function executed when alarm hits end value(interval value) used to get data from adc
+ */
+void IRAM_ATTR adc1timer1alarm(void *para)
 {
 	int timer_idx = (int) para;
 	uint32_t intr_status = TIMERG0.int_st_timers.val;
@@ -150,7 +162,10 @@ void IRAM_ATTR adc1timer1alarm(void *para)//function executed when alarm hits en
 	adcgetdata();
 }
 
-
+/**
+ *
+ *\brief initiation of timer, important to select function called after timer period elapesed and this period
+ */
 static void example_tg0_timer1_init()
 {
 	int timer_group = TIMER_GROUP_0;
@@ -180,8 +195,71 @@ static void example_tg0_timer1_init()
 }
 
 
+/**
+ *
+ *\brief this task establish a UDP connection and receive data from UDP
+ */
+static void udp_conn(void *pvParameters)
+{
+	ESP_LOGI(TAG, "task udp_conn start.");
+	/*wating for connecting to AP*/
+	xEventGroupWaitBits(udp_event_group, WIFI_CONNECTED_BIT,false, true, portMAX_DELAY);
+	ESP_LOGI(TAG, "sta has connected to ap.");
 
-static void echo_task()
+	/*create udp socket*/
+	int socket_ret;
+
+#if EXAMPLE_ESP_UDP_MODE_SERVER
+	ESP_LOGI(TAG, "create udp server after 3s...");
+	vTaskDelay(3000 / portTICK_RATE_MS);
+	ESP_LOGI(TAG, "create_udp_server.");
+	socket_ret=create_udp_server();
+#else /*EXAMPLE_ESP_UDP_MODE_SERVER*/
+	ESP_LOGI(TAG, "create udp client after 20s...");
+	vTaskDelay(20000 / portTICK_RATE_MS);
+	ESP_LOGI(TAG, "create_udp_client.");
+	socket_ret = create_udp_client();
+#endif
+	if(socket_ret == ESP_FAIL) {
+		ESP_LOGI(TAG, "create udp socket error,stop.");
+		vTaskDelete(NULL);
+	}
+
+	/*create a task to tx/rx data*/
+	TaskHandle_t tx_rx_task;
+	xTaskCreate(&send_recv_data, "send_recv_data", 4096, NULL, 4, &tx_rx_task);
+
+	/*waiting udp connected success*/
+	xEventGroupWaitBits(udp_event_group, UDP_CONNCETED_SUCCESS,false, true, portMAX_DELAY);
+	int bps;
+	while (1) {
+		total_data = 0;
+		vTaskDelay(3000 / portTICK_RATE_MS);//every 3s
+		bps = total_data / 3;
+
+		if (total_data <= 0) {
+			int err_ret = check_connected_socket();
+			if (err_ret == -1) {  //-1 reason: low level netif error
+				ESP_LOGW(TAG, "udp send & recv stop.\n");
+				break;
+			}
+		}
+
+#if EXAMPLE_ESP_UDP_PERF_TX
+		ESP_LOGI(TAG, "udp send %d byte per sec! total pack: %d \n", bps, success_pack);
+#else
+		ESP_LOGI(TAG, "udp recv %d byte per sec! total pack: %d \n", bps, success_pack);
+#endif /*EXAMPLE_ESP_UDP_PERF_TX*/
+	}
+	close_socket();
+	vTaskDelete(tx_rx_task);
+	vTaskDelete(NULL);
+}
+/**
+ *
+ *\brief function used to control ESP settings, it contains communication protocol(frame which start with # and ends with *)
+ */
+static void uart_communication()
 {
 	const int uart_num = UART_NUM_0;
 	uart_config_t uart_config = {
@@ -255,6 +333,14 @@ static void echo_task()
 							setPinLevel(pin1level,pin2level);
 							break;
 						}
+
+						case 'w':
+						{
+							//sscanf((char *)&data[i], "#%*d %*c %s %s %s %SCNd16*", SSID, wifipassword, addressIP, &udpport);
+							//reconnect ....
+							break;
+						}
+
 						}
 						i=i+size-1;
 					}
@@ -271,11 +357,21 @@ void app_main()
 {
 
 	//A UART read/write example without event queue;
-	xTaskCreate(echo_task, "uart_echo_task", 1024, NULL, 10, NULL);// I disabled echo message
+
+	//xTaskCreate(timer_example_evt_task, "timer_evt_task", 2048, NULL, 5, NULL); thread which is waiting to execute when there is a timer alarm(I didn't create it, I used a alarm function for blinking)
+#if EXAMPLE_ESP_WIFI_MODE_AP
+	ESP_LOGI(TAG, "EXAMPLE_ESP_WIFI_MODE_AP");
+	wifi_init_softap();
+#else /*EXAMPLE_ESP_WIFI_MODE_AP*/
+	ESP_LOGI(TAG, "ESP_WIFI_MODE_STA");
+	wifi_init_sta();
+#endif
+	xTaskCreate(&udp_conn, "udp_conn", 4096, NULL, 10, NULL);
+
+	xTaskCreate(uart_communication, "uart_communication", 1024, NULL, 5, NULL);// I disabled echo message
 	timer_queue = xQueueCreate(10, sizeof(timer_event_t));
 	initialize_adcs();
 	example_tg0_timer1_init();//first initiation of the timer(with auto-reload - after hitting end value it starts counting from 0)
-	//xTaskCreate(timer_example_evt_task, "timer_evt_task", 2048, NULL, 5, NULL); thread which is waiting to execute when there is a timer alarm(I didn't create it, I used a alarm function for blinking)
 }
 
 

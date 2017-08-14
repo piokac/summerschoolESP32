@@ -15,6 +15,7 @@
 #include <QTime>
 #include <QFileDialog>
 #include "logger.h"
+#include <wifisettings.h>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -28,6 +29,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(&esp32,SIGNAL(newDataAdc(int,int)),this,SLOT(newAdcData(int,int)));
     connect(ui->savingButton,SIGNAL(clicked(bool)),this,SLOT(savingClicked(bool)));
     connect(ui->actionZobacz_odczyty,SIGNAL(triggered()),this,SLOT(pokazCSVreader()));
+    connect(ui->actionWiFi,SIGNAL(triggered(bool)),this,SLOT(pokazOknoWiFi(bool)));
     timer.start();
 }
 
@@ -69,14 +71,60 @@ void MainWindow::pokazKomunikacja(bool state)
     updatePortStatus(state);
 }
 
+void MainWindow::pokazOknoWiFi(bool state)
+{
+    if(state)
+    {
+      wifisettings dialog;
+      qDebug()<<"otwarto";
+       if(dialog.exec() == QDialog::Accepted)
+       {
+             esp32.initSocket();
+
+       //esp32.wificonnection.SSID=dialog.getSSID();
+       //esp32.wificonnection.wifipassword=dialog.getPassword();
+       //esp32.wificonnection.addressIP=dialog.getIP();
+       //esp32.wificonnection.udpport=dialog.getPort();
+
+       //esp32.setWifiSettings();
+
+            //if connected
+            //if(esp32.getPort()!="")
+            // {
+            //     ui->actionKomunikacja->setText("Rozłącz");
+            //  }
+            // else
+            // {
+            //     state = !state;
+            //    ui->actionKomunikacja->setChecked(false);
+            // }
+
+            // }
+            // else
+            // {
+            //    state = !state;
+            //    ui->actionKomunikacja->setChecked(false);
+            // }
+            // }
+            //else
+            // {
+            //    ui->actionKomunikacja->setText("Połącz");
+            //   esp32.closePort();
+            // }
+            //updatePortStatus(state);
+       }
+   }
+
+}
+
 void MainWindow::newAdcData(int adc1, int adc2)
 {
     //wyświetla co 100 milisekund
     if(timer.elapsed()>100)
     {
-    ui->adc1values->setValue(adc1);
-    ui->adc2values->setValue(adc2);
-    timer.restart();
+       ui->adc1values->setValue(adc1);
+       ui->adc2values->setValue(adc2);
+        timer.restart();
     }
     if(saverToFile.getSavingToFileFlag()==true)
     {

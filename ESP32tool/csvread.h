@@ -19,6 +19,10 @@ class CSVread : public QDialog
 
 public:
     explicit CSVread(QWidget *parent = 0);
+    /**
+     * @brief initiateWindow opens a window where we can select csv file to load and put it into table
+     * @return TRUE = successful opened file, FALSE = didn't manage to open file
+     */
     bool initiateWindow();
     ~CSVread();
 

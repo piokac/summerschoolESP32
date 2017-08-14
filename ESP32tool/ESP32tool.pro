@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui serialport
+QT += network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -17,17 +18,20 @@ SOURCES += main.cpp\
     esp32data.cpp \
     serialportsettings.cpp \
     csvread.cpp \
-    logger.cpp
+    logger.cpp \
+    wifisettings.cpp
 
 HEADERS  += mainwindow.h \
     esp32data.h \
     serialportsettings.h \
     csvread.h \
-    logger.h
+    logger.h \
+    wifisettings.h
 
 FORMS    += mainwindow.ui \
     serialportsettings.ui \
-    csvread.ui
+    csvread.ui \
+    wifisettings.ui
 
 RESOURCES += \
     icons.qrc

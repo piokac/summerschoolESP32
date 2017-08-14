@@ -1,5 +1,5 @@
 #include "logger.h"
-logger::logger()
+logger::logger():savingToFileFlag(0)
 {
 
 }

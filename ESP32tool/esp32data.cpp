@@ -59,6 +59,74 @@ ESP32data::~ESP32data()
     closePort();
 }
 
+void ESP32data::initSocket()
+{
+    udpSocket = new QUdpSocket(this);
+        udpSocket->bind(QHostAddress::Any, 7755);
+
+        connect(udpSocket, SIGNAL(readyRead()),
+                this, SLOT(readPendingDatagrams()));
+}
+
+void ESP32data::processTheDatagram(QNetworkDatagram datagram)
+{
+QByteArray receivedData=datagram.data();
+qDebug() << receivedData.size();
+/*
+static string frame;
+frame+=string(receivedData);
+smatch containSizeandCmd;
+smatch containAdcsData;
+regex findSizeAndCmd("\\#(\\d+)\\s(\\w)\\s([^\\*]*)\\*");
+
+char cmd;
+string size;
+
+if(frame.length()>0)
+{
+    while (regex_search(frame, containSizeandCmd, findSizeAndCmd))
+    {
+        size=containSizeandCmd[1];
+        cmd=((string)containSizeandCmd[2])[0];
+        string data=containSizeandCmd[3];
+        frame = containSizeandCmd.suffix().str();
+        switch(cmd)
+        {
+        case 'G':
+        {
+            regex pattern("\\s*(\\d+)\\s+(\\d+)");
+            if (std::regex_search(data, containAdcsData, pattern))
+            {
+                emit newDataAdc(stoi(containAdcsData[1]),stoi(containAdcsData[2]));
+            }
+            break;
+        }
+        }
+    }
+}
+
+*/
+
+
+}
+
+void ESP32data::setWifiSettings()
+{
+    QString info = QString("#X w %1 %2 %3 %4*")//#LENGTH s pin1 pin2* example: #9 s 1 0*
+          .arg(wificonnection.SSID).arg(wificonnection.wifipassword).arg(wificonnection.addressIP).arg(wificonnection.udpport);
+    QByteArray infoByte=info.toLocal8Bit();
+   writeData(infoByte);
+    qDebug()<<infoByte;
+}
+
+void ESP32data::readPendingDatagrams()
+{
+    while (udpSocket->hasPendingDatagrams()) {
+        QNetworkDatagram datagram = udpSocket->receiveDatagram();
+        processTheDatagram(datagram);
+    }
+}
+
 
 void ESP32data::setGpios(int pin1, int pin2)
 {
@@ -200,18 +268,9 @@ void ESP32data::callForData()
 
 }
 
-QByteArray ESP32data::readData()//TODO
+QByteArray ESP32data::readData()
 {
     QByteArray info = serial->readAll();
     //qDebug()<<info;
     return info;
 }
-
-
-
-
-
-
-
-
-

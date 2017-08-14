@@ -214,6 +214,7 @@
      <string>Ustawienia</string>
     </property>
     <addaction name="actionKomunikacja"/>
+    <addaction name="actionWiFi"/>
    </widget>
    <widget class="QMenu" name="menuNarz_dzia">
     <property name="title">
@@ -232,11 +233,15 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionKomunikacja"/>
+   <addaction name="actionWiFi"/>
    <addaction name="actionZobacz_odczyty"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionKomunikacja">
    <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="enabled">
     <bool>true</bool>
    </property>
    <property name="icon">
@@ -263,6 +268,17 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+R</string>
+   </property>
+  </action>
+  <action name="actionWiFi">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Połącz z WiFi</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+W</string>
    </property>
   </action>
  </widget>

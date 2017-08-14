@@ -6,19 +6,10 @@
 #include "csvread.h"
 #include "logger.h"
 #include <QElapsedTimer>
+
 namespace Ui {
 class MainWindow;
 }
-//Błędy:
-//1. przy podawaniu okresu próbkowania ADC,od liczby 1000000 pojawia się notacja naukowa//POPRAWIONE
-//i źle zliczana jest wtedy liczba znaków w ramce(crash programu) //POPRAWIONE
-//2. ustawiając potecjometr na skrajną pozycję(wskazanie 0) a następnie ustawiając
-//wartość dwuliczbową, jest duże opóźnienie
-//3. program na esp32 cyklicznie wysyła dwie ramki na raz
-
-
-
-
 
 class MainWindow : public QMainWindow
 {
@@ -30,6 +21,12 @@ public:
 
 public slots:
     void pokazKomunikacja(bool state);
+    void pokazOknoWiFi(bool state);
+    /**
+     * @brief newAdcData slot to receive data from emited signal, process adc values
+     * @param adc1 value adc1
+     * @param adc2 value adc2
+     */
     void newAdcData(int adc1,int adc2);
     void savingClicked(bool state);
     void pokazCSVreader();

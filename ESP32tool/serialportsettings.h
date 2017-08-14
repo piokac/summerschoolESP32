@@ -13,7 +13,7 @@ class SerialPortSettings : public QDialog
     Q_OBJECT
 
 public:
-    explicit SerialPortSettings(QWidget *parent = 0);
+    explicit SerialPortSettings(QWidget *parent = 0); /*!< class for serial communication window*/
     ~SerialPortSettings();
     QString getPort();
 

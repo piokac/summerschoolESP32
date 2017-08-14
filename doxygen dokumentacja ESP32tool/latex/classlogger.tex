@@ -1,0 +1,105 @@
+\hypertarget{classlogger}{}\section{logger Class Reference}
+\label{classlogger}\index{logger@{logger}}
+
+
+{\ttfamily \#include $<$logger.\+h$>$}
+
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classlogger_a6061365f51872f2f269568a8243dc284}{stop\+Saving} ()
+\begin{DoxyCompactList}\small\item\em stop\+Saving sets flag that file is closed and close port \end{DoxyCompactList}\item 
+void \hyperlink{classlogger_abfe4ff2446577ad695e9fed3fb3aec52}{log} (Q\+Vector$<$ int $>$ data)
+\begin{DoxyCompactList}\small\item\em log logger to file time, adc1, adc2 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classlogger_a4f753a510e00c892b38e95c2284363a6}{logger} ()
+\begin{DoxyCompactList}\small\item\em class used to save files \end{DoxyCompactList}\item 
+void \hyperlink{classlogger_aa50d85f779b5f28f67dab8ab6a215ad8}{Open\+File} (Q\+String Save\+File\+Name)
+\begin{DoxyCompactList}\small\item\em Open\+File. \end{DoxyCompactList}\item 
+bool \hyperlink{classlogger_a1e070c45351986c87fe9c697b149de8d}{get\+Saving\+To\+File\+Flag} () const
+\begin{DoxyCompactList}\small\item\em get\+Saving\+To\+File\+Flag \end{DoxyCompactList}\item 
+\hyperlink{classlogger_aadd537feeeb16186f6aeb4ca0267a8d7}{$\sim$logger} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classlogger_a4f753a510e00c892b38e95c2284363a6}\label{classlogger_a4f753a510e00c892b38e95c2284363a6}} 
+\index{logger@{logger}!logger@{logger}}
+\index{logger@{logger}!logger@{logger}}
+\subsubsection{\texorpdfstring{logger()}{logger()}}
+{\footnotesize\ttfamily logger\+::logger (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+class used to save files 
+
+\mbox{\Hypertarget{classlogger_aadd537feeeb16186f6aeb4ca0267a8d7}\label{classlogger_aadd537feeeb16186f6aeb4ca0267a8d7}} 
+\index{logger@{logger}!````~logger@{$\sim$logger}}
+\index{````~logger@{$\sim$logger}!logger@{logger}}
+\subsubsection{\texorpdfstring{$\sim$logger()}{~logger()}}
+{\footnotesize\ttfamily logger\+::$\sim$logger (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classlogger_a1e070c45351986c87fe9c697b149de8d}\label{classlogger_a1e070c45351986c87fe9c697b149de8d}} 
+\index{logger@{logger}!get\+Saving\+To\+File\+Flag@{get\+Saving\+To\+File\+Flag}}
+\index{get\+Saving\+To\+File\+Flag@{get\+Saving\+To\+File\+Flag}!logger@{logger}}
+\subsubsection{\texorpdfstring{get\+Saving\+To\+File\+Flag()}{getSavingToFileFlag()}}
+{\footnotesize\ttfamily bool logger\+::get\+Saving\+To\+File\+Flag (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+get\+Saving\+To\+File\+Flag 
+
+\begin{DoxyReturn}{Returns}
+true if file opened false if not opened 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classlogger_abfe4ff2446577ad695e9fed3fb3aec52}\label{classlogger_abfe4ff2446577ad695e9fed3fb3aec52}} 
+\index{logger@{logger}!log@{log}}
+\index{log@{log}!logger@{logger}}
+\subsubsection{\texorpdfstring{log}{log}}
+{\footnotesize\ttfamily void logger\+::log (\begin{DoxyParamCaption}\item[{Q\+Vector$<$ int $>$}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+log logger to file time, adc1, adc2 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & is vector with adc1 and adc2 data \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classlogger_aa50d85f779b5f28f67dab8ab6a215ad8}\label{classlogger_aa50d85f779b5f28f67dab8ab6a215ad8}} 
+\index{logger@{logger}!Open\+File@{Open\+File}}
+\index{Open\+File@{Open\+File}!logger@{logger}}
+\subsubsection{\texorpdfstring{Open\+File()}{OpenFile()}}
+{\footnotesize\ttfamily void logger\+::\+Open\+File (\begin{DoxyParamCaption}\item[{Q\+String}]{Save\+File\+Name }\end{DoxyParamCaption})}
+
+
+
+Open\+File. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Save\+File\+Name} & file which we use to save data \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classlogger_a6061365f51872f2f269568a8243dc284}\label{classlogger_a6061365f51872f2f269568a8243dc284}} 
+\index{logger@{logger}!stop\+Saving@{stop\+Saving}}
+\index{stop\+Saving@{stop\+Saving}!logger@{logger}}
+\subsubsection{\texorpdfstring{stop\+Saving}{stopSaving}}
+{\footnotesize\ttfamily void logger\+::stop\+Saving (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+stop\+Saving sets flag that file is closed and close port 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Kuba/\+Documents/\+E\+S\+P32tool/\hyperlink{logger_8h}{logger.\+h}\item 
+C\+:/\+Users/\+Kuba/\+Documents/\+E\+S\+P32tool/\hyperlink{logger_8cpp}{logger.\+cpp}\end{DoxyCompactItemize}

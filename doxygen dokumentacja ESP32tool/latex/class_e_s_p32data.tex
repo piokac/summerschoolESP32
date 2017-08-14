@@ -1,0 +1,254 @@
+\hypertarget{class_e_s_p32data}{}\section{E\+S\+P32data Class Reference}
+\label{class_e_s_p32data}\index{E\+S\+P32data@{E\+S\+P32data}}
+
+
+{\ttfamily \#include $<$esp32data.\+h$>$}
+
+Inheritance diagram for E\+S\+P32data\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_e_s_p32data}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_e_s_p32data_1_1_wifi_settings}{Wifi\+Settings}
+\end{DoxyCompactItemize}
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_e_s_p32data_ad2205a1545fbea3bff74848dc43c4684}{set\+Gpios} (int pin1, int pin2)
+\begin{DoxyCompactList}\small\item\em set\+Gpios set pins levels and send frame \end{DoxyCompactList}\item 
+void \hyperlink{class_e_s_p32data_aa2716175de492c5de8bb48333eafd9a2}{set\+Frequency\+Adc} (double freq)
+\begin{DoxyCompactList}\small\item\em set\+Frequency\+Adc and send frame \end{DoxyCompactList}\item 
+void \hyperlink{class_e_s_p32data_a38e856c9f7c5c986fee548ff2e9980a3}{timer\+Event} (Q\+Timer\+Event $\ast$ev)
+\begin{DoxyCompactList}\small\item\em timer\+Event timer which contains getting data from E\+S\+P32 \end{DoxyCompactList}\item 
+void \hyperlink{class_e_s_p32data_acce7a248a76cc084a78d58aa0b8d18ae}{write\+Data} (Q\+Byte\+Array data)
+\begin{DoxyCompactList}\small\item\em write\+Data send data on U\+A\+RT \end{DoxyCompactList}\item 
+void \hyperlink{class_e_s_p32data_a50a3a6adc1a17b1d59e57c1ead7b369d}{call\+For\+Data} ()
+\begin{DoxyCompactList}\small\item\em call\+For\+Data sends a frame and then E\+S\+P32 answers adcs values in frame \end{DoxyCompactList}\item 
+Q\+Byte\+Array \hyperlink{class_e_s_p32data_aacb815132c382980c4d850f099e26ea6}{read\+Data} ()
+\begin{DoxyCompactList}\small\item\em read\+Data read data from uart \end{DoxyCompactList}\item 
+void \hyperlink{class_e_s_p32data_ab474f90be7784fdc763e78d6bb741c91}{read\+Pending\+Datagrams} ()
+\begin{DoxyCompactList}\small\item\em read\+Pending\+Datagrams receive datagrams in U\+DP \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_e_s_p32data_ade36e3d9b929614a79d1a24491c18185}{new\+Data\+Adc} (int, int)
+\begin{DoxyCompactList}\small\item\em new\+Data\+Adc we get data and emit a signal-\/ we send adc1 and adc2 values in arguments(\+Q\+T automaticy get it it when we connect with slot) after connecting data go to slot and we can process this data in the slot \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_e_s_p32data_a23df6c4c56c578b115900d767280ed78}{E\+S\+P32data} (Q\+Object $\ast$parent=0)
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_e_s_p32data}{E\+S\+P32data} class is used to communication with E\+SP module, it doesn\textquotesingle{}t create any windows,it just class for communication. \end{DoxyCompactList}\item 
+void \hyperlink{class_e_s_p32data_a74a82e4ce7f99e01b1c9e1f6e3cd6333}{close\+Port} ()
+\begin{DoxyCompactList}\small\item\em close\+Port closing uart communication port \end{DoxyCompactList}\item 
+void \hyperlink{class_e_s_p32data_a6681c1880617d85c2dfe2dac976aa021}{set\+Port} (Q\+String Name\+Port)
+\begin{DoxyCompactList}\small\item\em set\+Port selects port in computer where E\+S\+P32 is connected, for example C\+O\+M3 \end{DoxyCompactList}\item 
+Q\+String \hyperlink{class_e_s_p32data_a7f451228e41241eb51347d6453f30590}{get\+Port} ()
+\item 
+void \hyperlink{class_e_s_p32data_a48f03ba841041fd88b8c60659ef36064}{init\+Socket} ()
+\begin{DoxyCompactList}\small\item\em init\+Socket opens a socket on a computer, in summerschool computer was a server and E\+SP was a client \end{DoxyCompactList}\item 
+void \hyperlink{class_e_s_p32data_ac4d3568c735d68b89cc5c7d59ccce8e7}{set\+Wifi\+Settings} ()
+\begin{DoxyCompactList}\small\item\em set\+Wifi\+Settings it loads values from window and sends it to E\+S\+P32 in frame, T\+O\+DO\+: \hyperlink{struct_e_s_p32data_1_1_wifi_settings}{Wifi\+Settings} struct is public-\/ change it \end{DoxyCompactList}\item 
+\hyperlink{class_e_s_p32data_ae250e8a91371316a8104e65328cef89d}{$\sim$\+E\+S\+P32data} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_e_s_p32data_1_1_wifi_settings}{Wifi\+Settings} \hyperlink{class_e_s_p32data_af22a2683c01fae73c97eb0e03884675b}{wificonnection}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_e_s_p32data_a23df6c4c56c578b115900d767280ed78}\label{class_e_s_p32data_a23df6c4c56c578b115900d767280ed78}} 
+\index{E\+S\+P32data@{E\+S\+P32data}!E\+S\+P32data@{E\+S\+P32data}}
+\index{E\+S\+P32data@{E\+S\+P32data}!E\+S\+P32data@{E\+S\+P32data}}
+\subsubsection{\texorpdfstring{E\+S\+P32data()}{ESP32data()}}
+{\footnotesize\ttfamily E\+S\+P32data\+::\+E\+S\+P32data (\begin{DoxyParamCaption}\item[{Q\+Object $\ast$}]{parent = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+\hyperlink{class_e_s_p32data}{E\+S\+P32data} class is used to communication with E\+SP module, it doesn\textquotesingle{}t create any windows,it just class for communication. 
+
+\mbox{\Hypertarget{class_e_s_p32data_ae250e8a91371316a8104e65328cef89d}\label{class_e_s_p32data_ae250e8a91371316a8104e65328cef89d}} 
+\index{E\+S\+P32data@{E\+S\+P32data}!````~E\+S\+P32data@{$\sim$\+E\+S\+P32data}}
+\index{````~E\+S\+P32data@{$\sim$\+E\+S\+P32data}!E\+S\+P32data@{E\+S\+P32data}}
+\subsubsection{\texorpdfstring{$\sim$\+E\+S\+P32data()}{~ESP32data()}}
+{\footnotesize\ttfamily E\+S\+P32data\+::$\sim$\+E\+S\+P32data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_e_s_p32data_a50a3a6adc1a17b1d59e57c1ead7b369d}\label{class_e_s_p32data_a50a3a6adc1a17b1d59e57c1ead7b369d}} 
+\index{E\+S\+P32data@{E\+S\+P32data}!call\+For\+Data@{call\+For\+Data}}
+\index{call\+For\+Data@{call\+For\+Data}!E\+S\+P32data@{E\+S\+P32data}}
+\subsubsection{\texorpdfstring{call\+For\+Data}{callForData}}
+{\footnotesize\ttfamily void E\+S\+P32data\+::call\+For\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+call\+For\+Data sends a frame and then E\+S\+P32 answers adcs values in frame 
+
+\mbox{\Hypertarget{class_e_s_p32data_a74a82e4ce7f99e01b1c9e1f6e3cd6333}\label{class_e_s_p32data_a74a82e4ce7f99e01b1c9e1f6e3cd6333}} 
+\index{E\+S\+P32data@{E\+S\+P32data}!close\+Port@{close\+Port}}
+\index{close\+Port@{close\+Port}!E\+S\+P32data@{E\+S\+P32data}}
+\subsubsection{\texorpdfstring{close\+Port()}{closePort()}}
+{\footnotesize\ttfamily void E\+S\+P32data\+::close\+Port (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+close\+Port closing uart communication port 
+
+\mbox{\Hypertarget{class_e_s_p32data_a7f451228e41241eb51347d6453f30590}\label{class_e_s_p32data_a7f451228e41241eb51347d6453f30590}} 
+\index{E\+S\+P32data@{E\+S\+P32data}!get\+Port@{get\+Port}}
+\index{get\+Port@{get\+Port}!E\+S\+P32data@{E\+S\+P32data}}
+\subsubsection{\texorpdfstring{get\+Port()}{getPort()}}
+{\footnotesize\ttfamily Q\+String E\+S\+P32data\+::get\+Port (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{class_e_s_p32data_a48f03ba841041fd88b8c60659ef36064}\label{class_e_s_p32data_a48f03ba841041fd88b8c60659ef36064}} 
+\index{E\+S\+P32data@{E\+S\+P32data}!init\+Socket@{init\+Socket}}
+\index{init\+Socket@{init\+Socket}!E\+S\+P32data@{E\+S\+P32data}}
+\subsubsection{\texorpdfstring{init\+Socket()}{initSocket()}}
+{\footnotesize\ttfamily void E\+S\+P32data\+::init\+Socket (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+init\+Socket opens a socket on a computer, in summerschool computer was a server and E\+SP was a client 
+
+\mbox{\Hypertarget{class_e_s_p32data_ade36e3d9b929614a79d1a24491c18185}\label{class_e_s_p32data_ade36e3d9b929614a79d1a24491c18185}} 
+\index{E\+S\+P32data@{E\+S\+P32data}!new\+Data\+Adc@{new\+Data\+Adc}}
+\index{new\+Data\+Adc@{new\+Data\+Adc}!E\+S\+P32data@{E\+S\+P32data}}
+\subsubsection{\texorpdfstring{new\+Data\+Adc}{newDataAdc}}
+{\footnotesize\ttfamily void E\+S\+P32data\+::new\+Data\+Adc (\begin{DoxyParamCaption}\item[{int}]{,  }\item[{int}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+new\+Data\+Adc we get data and emit a signal-\/ we send adc1 and adc2 values in arguments(\+Q\+T automaticy get it it when we connect with slot) after connecting data go to slot and we can process this data in the slot 
+
+\mbox{\Hypertarget{class_e_s_p32data_aacb815132c382980c4d850f099e26ea6}\label{class_e_s_p32data_aacb815132c382980c4d850f099e26ea6}} 
+\index{E\+S\+P32data@{E\+S\+P32data}!read\+Data@{read\+Data}}
+\index{read\+Data@{read\+Data}!E\+S\+P32data@{E\+S\+P32data}}
+\subsubsection{\texorpdfstring{read\+Data}{readData}}
+{\footnotesize\ttfamily Q\+Byte\+Array E\+S\+P32data\+::read\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+read\+Data read data from uart 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_e_s_p32data_ab474f90be7784fdc763e78d6bb741c91}\label{class_e_s_p32data_ab474f90be7784fdc763e78d6bb741c91}} 
+\index{E\+S\+P32data@{E\+S\+P32data}!read\+Pending\+Datagrams@{read\+Pending\+Datagrams}}
+\index{read\+Pending\+Datagrams@{read\+Pending\+Datagrams}!E\+S\+P32data@{E\+S\+P32data}}
+\subsubsection{\texorpdfstring{read\+Pending\+Datagrams}{readPendingDatagrams}}
+{\footnotesize\ttfamily void E\+S\+P32data\+::read\+Pending\+Datagrams (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+read\+Pending\+Datagrams receive datagrams in U\+DP 
+
+\mbox{\Hypertarget{class_e_s_p32data_aa2716175de492c5de8bb48333eafd9a2}\label{class_e_s_p32data_aa2716175de492c5de8bb48333eafd9a2}} 
+\index{E\+S\+P32data@{E\+S\+P32data}!set\+Frequency\+Adc@{set\+Frequency\+Adc}}
+\index{set\+Frequency\+Adc@{set\+Frequency\+Adc}!E\+S\+P32data@{E\+S\+P32data}}
+\subsubsection{\texorpdfstring{set\+Frequency\+Adc}{setFrequencyAdc}}
+{\footnotesize\ttfamily void E\+S\+P32data\+::set\+Frequency\+Adc (\begin{DoxyParamCaption}\item[{double}]{freq }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+set\+Frequency\+Adc and send frame 
+
+
+\begin{DoxyParams}{Parameters}
+{\em freq} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_e_s_p32data_ad2205a1545fbea3bff74848dc43c4684}\label{class_e_s_p32data_ad2205a1545fbea3bff74848dc43c4684}} 
+\index{E\+S\+P32data@{E\+S\+P32data}!set\+Gpios@{set\+Gpios}}
+\index{set\+Gpios@{set\+Gpios}!E\+S\+P32data@{E\+S\+P32data}}
+\subsubsection{\texorpdfstring{set\+Gpios}{setGpios}}
+{\footnotesize\ttfamily void E\+S\+P32data\+::set\+Gpios (\begin{DoxyParamCaption}\item[{int}]{pin1,  }\item[{int}]{pin2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+set\+Gpios set pins levels and send frame 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pin1} & level \\
+\hline
+{\em pin2} & level \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_e_s_p32data_a6681c1880617d85c2dfe2dac976aa021}\label{class_e_s_p32data_a6681c1880617d85c2dfe2dac976aa021}} 
+\index{E\+S\+P32data@{E\+S\+P32data}!set\+Port@{set\+Port}}
+\index{set\+Port@{set\+Port}!E\+S\+P32data@{E\+S\+P32data}}
+\subsubsection{\texorpdfstring{set\+Port()}{setPort()}}
+{\footnotesize\ttfamily void E\+S\+P32data\+::set\+Port (\begin{DoxyParamCaption}\item[{Q\+String}]{Name\+Port }\end{DoxyParamCaption})}
+
+
+
+set\+Port selects port in computer where E\+S\+P32 is connected, for example C\+O\+M3 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name\+Port} & port, example C\+O\+M3 \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_e_s_p32data_ac4d3568c735d68b89cc5c7d59ccce8e7}\label{class_e_s_p32data_ac4d3568c735d68b89cc5c7d59ccce8e7}} 
+\index{E\+S\+P32data@{E\+S\+P32data}!set\+Wifi\+Settings@{set\+Wifi\+Settings}}
+\index{set\+Wifi\+Settings@{set\+Wifi\+Settings}!E\+S\+P32data@{E\+S\+P32data}}
+\subsubsection{\texorpdfstring{set\+Wifi\+Settings()}{setWifiSettings()}}
+{\footnotesize\ttfamily void E\+S\+P32data\+::set\+Wifi\+Settings (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+set\+Wifi\+Settings it loads values from window and sends it to E\+S\+P32 in frame, T\+O\+DO\+: \hyperlink{struct_e_s_p32data_1_1_wifi_settings}{Wifi\+Settings} struct is public-\/ change it 
+
+\mbox{\Hypertarget{class_e_s_p32data_a38e856c9f7c5c986fee548ff2e9980a3}\label{class_e_s_p32data_a38e856c9f7c5c986fee548ff2e9980a3}} 
+\index{E\+S\+P32data@{E\+S\+P32data}!timer\+Event@{timer\+Event}}
+\index{timer\+Event@{timer\+Event}!E\+S\+P32data@{E\+S\+P32data}}
+\subsubsection{\texorpdfstring{timer\+Event}{timerEvent}}
+{\footnotesize\ttfamily void E\+S\+P32data\+::timer\+Event (\begin{DoxyParamCaption}\item[{Q\+Timer\+Event $\ast$}]{ev }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+timer\+Event timer which contains getting data from E\+S\+P32 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ev} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_e_s_p32data_acce7a248a76cc084a78d58aa0b8d18ae}\label{class_e_s_p32data_acce7a248a76cc084a78d58aa0b8d18ae}} 
+\index{E\+S\+P32data@{E\+S\+P32data}!write\+Data@{write\+Data}}
+\index{write\+Data@{write\+Data}!E\+S\+P32data@{E\+S\+P32data}}
+\subsubsection{\texorpdfstring{write\+Data}{writeData}}
+{\footnotesize\ttfamily void E\+S\+P32data\+::write\+Data (\begin{DoxyParamCaption}\item[{Q\+Byte\+Array}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+write\+Data send data on U\+A\+RT 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Q\+Byte\+Array data \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_e_s_p32data_af22a2683c01fae73c97eb0e03884675b}\label{class_e_s_p32data_af22a2683c01fae73c97eb0e03884675b}} 
+\index{E\+S\+P32data@{E\+S\+P32data}!wificonnection@{wificonnection}}
+\index{wificonnection@{wificonnection}!E\+S\+P32data@{E\+S\+P32data}}
+\subsubsection{\texorpdfstring{wificonnection}{wificonnection}}
+{\footnotesize\ttfamily \hyperlink{struct_e_s_p32data_1_1_wifi_settings}{Wifi\+Settings} E\+S\+P32data\+::wificonnection}
+
+struct object which contais wifi settings 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Kuba/\+Documents/\+E\+S\+P32tool/\hyperlink{esp32data_8h}{esp32data.\+h}\item 
+C\+:/\+Users/\+Kuba/\+Documents/\+E\+S\+P32tool/\hyperlink{esp32data_8cpp}{esp32data.\+cpp}\end{DoxyCompactItemize}

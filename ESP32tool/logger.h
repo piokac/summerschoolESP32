@@ -34,7 +34,8 @@ public slots:
      * @brief log logger to file time, adc1, adc2
      * @param data is vector with adc1 and adc2 data
      */
-    void log(QVector<int> data);
+    void log(QVector<float> &data);
+    void logtest(QString test);
 
 private:
     bool savingToFileFlag; /*!< saving True, not saving(file closed) FALSE */

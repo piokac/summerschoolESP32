@@ -5,6 +5,8 @@
 #include "esp32data.h"
 #include "csvread.h"
 #include "logger.h"
+#include "madgwickahrs.h"
+#include "visualisationwindow.h"
 #include <QElapsedTimer>
 
 namespace Ui {
@@ -28,8 +30,12 @@ public slots:
      * @param adc2 value adc2
      */
     void newAdcData(int adc1,int adc2);
+    void newDataIMU(QVector<short> accelData, QVector<short> gyroData, QVector<short> magnetData);
+    void testD(QString received);
     void savingClicked(bool state);
     void pokazCSVreader();
+    void showVisualisationGL();
+    void pokazOknoWiz();
 
 private slots:
 
@@ -41,8 +47,12 @@ private:
     Ui::MainWindow *ui;
     void updatePortStatus(bool state);
     ESP32data esp32;
+    visualisationWindow window;
+
     logger saverToFile;
     QElapsedTimer timer;
+    MadgwickAHRS MadAhrs;
+    //QElapsedTimer timerSaver;
 
 };
 

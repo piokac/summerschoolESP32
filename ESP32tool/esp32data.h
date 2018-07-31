@@ -11,6 +11,16 @@
 #include <QFileDialog>
 #include <QUdpSocket>
 #include <QNetworkDatagram>
+#include <QTcpServer>
+#include <QTcpSocket>
+#include <QtNetwork>
+
+
+
+#define COMMUNICATIONINTERVAL 100
+#define NOCONNECTIONSTATUS 0
+#define UARTCONNECTIONSTATUS 1
+#define UDPCONNECTIONSTATUS 2
 
 class ESP32data : public QObject
 {
@@ -32,6 +42,10 @@ public:
      * @param NamePort port, example COM3
      */
     void setPort(QString NamePort);
+    /**
+     * @brief closeSocket closing UDP socket
+     */
+    void closeSocket();
     QString getPort();
     /**
      * @brief initSocket opens a socket on a computer, in summerschool computer was a server and ESP was a client
@@ -51,9 +65,16 @@ public:
     WifiSettings wificonnection; /*!< struct object which contais wifi settings*/
     ~ESP32data();
 
+    int getCommunication_mode() const;
+    void setCommunication_mode(int value);
+
 private:
     QSerialPort *serial;
     QUdpSocket *udpSocket;
+    QTcpServer *tcpServer;
+    QTcpSocket *tcpSocket;
+
+    int communication_mode;//0-no connection, 1-uart, 2-wifi
 
     int pin1level,pin2level; /*!< pin1level and pin2level which we want to set on ESP*/
     double frequency;/*!< frequency which we want to set on ESP*/
@@ -62,6 +83,7 @@ private:
      * @param datagram datagram is a packet which we get in udp communication
      */
     void processTheDatagram(QNetworkDatagram datagram);
+    void processTheBytes(QByteArray receivedData);
 
 
 signals:
@@ -69,6 +91,9 @@ signals:
      * @brief newDataAdc we get data and emit a signal- we send adc1 and adc2 values in arguments(QT automaticy get it it when we connect with slot) after connecting data go to slot and we can process this data in the slot
      */
     void newDataAdc(int, int);
+
+    void newDataIMU(QVector<short>,QVector<short>,QVector<short>);
+    void testData(QString);
 public slots:
     /**
      * @brief setGpios set pins levels and send frame
@@ -104,6 +129,10 @@ public slots:
      * @brief readPendingDatagrams receive datagrams in UDP
      */
     void readPendingDatagrams();
+    void readPendingBytes();
+    void startCommunication();
+    void newConnection();
+    void onSocketStateChanged(QAbstractSocket::SocketState socketState);
 };
 
 #endif // ESP32DATA_H

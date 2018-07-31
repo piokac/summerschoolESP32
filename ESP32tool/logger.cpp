@@ -10,8 +10,8 @@ void logger::OpenFile(QString SaveFileName)
     file.setFileName(SaveFileName);
     if(file.open(QIODevice::WriteOnly | QIODevice::Append))
     {
-        savingToFileFlag=true;
         stream.setDevice(&file);
+        savingToFileFlag=true;
     }
 }
 
@@ -27,11 +27,11 @@ void logger::stopSaving()
     // }
 }
 
-void logger::log(QVector<int> data)
+void logger::log(QVector<float> &data)
 {
     QString format = "hh:mm:ss:zzz";
     QString str=QTime::currentTime().toString(format);
-    stream.setDevice(&file);
+    //stream.setDevice(&file);
     stream<<str;
     for(int i=0;i<data.size();i++)
     {
@@ -41,6 +41,21 @@ void logger::log(QVector<int> data)
 
     stream.flush();
 }
+
+void logger::logtest(QString test)
+{
+    QString format = "hh:mm:ss:zzz";
+    QString str=QTime::currentTime().toString(format);
+    //stream.setDevice(&file);
+    stream<<str;
+    stream<< test;
+    stream << "\r\n";
+
+    stream.flush();
+}
+
+
+
 
 bool logger::getSavingToFileFlag() const
 {

@@ -6,6 +6,9 @@
 
 QT       += core gui serialport
 QT += network
+QT += opengl
+#LIBS+= -lglew32 -lGLFW3 -lopengl32 -lglu32
+
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -19,14 +22,24 @@ SOURCES += main.cpp\
     serialportsettings.cpp \
     csvread.cpp \
     logger.cpp \
-    wifisettings.cpp
+    wifisettings.cpp \
+    madgwickahrs.cpp \
+    visualisationgl.cpp \
+    visualisationwindow.cpp \
+    glwidget.cpp \
+    geometryengine.cpp
 
 HEADERS  += mainwindow.h \
     esp32data.h \
     serialportsettings.h \
     csvread.h \
     logger.h \
-    wifisettings.h
+    wifisettings.h \
+    madgwickahrs.h \
+    visualisationgl.h \
+    visualisationwindow.h \
+    glwidget.h \
+    geometryengine.h
 
 FORMS    += mainwindow.ui \
     serialportsettings.ui \
@@ -34,4 +47,6 @@ FORMS    += mainwindow.ui \
     wifisettings.ui
 
 RESOURCES += \
-    icons.qrc
+    icons.qrc \
+    shaders.qrc \
+    textures.qrc
